@@ -87,3 +87,4 @@ export function validatePackageCitations(pkg: ITaxRulePackage): IValidationResul
 
   return { isValid: issues.length === 0, issues };
 }
+

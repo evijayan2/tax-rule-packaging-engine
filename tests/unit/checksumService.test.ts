@@ -38,3 +38,4 @@ describe("checksumService", () => {
     expect(verifyVersionChecksum(tampered)).toBe(false);
   });
 });
+

@@ -112,3 +112,4 @@ export function runPackageRegressionTests(pkg: ITaxRulePackage): IRegressionRunR
     executedAt: new Date().toISOString()
   };
 }
+

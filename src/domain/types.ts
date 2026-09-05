@@ -143,3 +143,4 @@ export interface ITaxRulePackage {
   manifestChecksum?: string;
   generatedAt: string;
 }
+

@@ -58,3 +58,4 @@ export function runValidationPipeline(pkg: unknown): IPipelineReport {
     validatedAt: new Date().toISOString()
   };
 }
+

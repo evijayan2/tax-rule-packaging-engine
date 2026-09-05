@@ -70,3 +70,4 @@ export const pennsylvaniaTaxPackage2026: ITaxRulePackage = {
     }
   ]
 };
+

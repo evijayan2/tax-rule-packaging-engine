@@ -80,3 +80,4 @@ export function diffRuleVersions(
     comparedAt: new Date().toISOString()
   };
 }
+

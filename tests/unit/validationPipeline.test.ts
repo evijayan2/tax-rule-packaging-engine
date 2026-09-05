@@ -40,3 +40,4 @@ describe("validationPipeline", () => {
     expect(report.totalIssues).toBeGreaterThan(0);
   });
 });
+

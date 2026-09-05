@@ -29,3 +29,4 @@ describe("structuralValidator", () => {
     expect(res.isValid).toBe(false);
   });
 });
+

@@ -22,3 +22,4 @@ describe("canonicalJson", () => {
     expect(res).toBe('{"a":{"x":10,"y":"test"},"b":[3,2,1]}');
   });
 });
+

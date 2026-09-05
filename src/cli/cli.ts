@@ -80,10 +80,30 @@ function handleBuild(filePath: string, outPath?: string): void {
 }
 
 /**
+ * Command: Ingest regulatory notices from an authority into a draft package.
+ */
+async function handleIngest(authority: string, yearStr?: string, outPath?: string): Promise<void> {
+  const { runIngestionPipeline } = await import("../ingestion/ingestionPipeline.js");
+  const taxYear = yearStr ? parseInt(yearStr, 10) : new Date().getFullYear();
+  const report = await runIngestionPipeline({ authorityCode: authority, taxYear });
+
+  if (report.success && report.package) {
+    const destination = outPath ?? `./draft-${report.package.packageCode.toLowerCase()}.json`;
+    writeFileSync(destination, JSON.stringify(report.package, null, 2), "utf8");
+    logger.info(
+      `Successfully ingested ${report.rulesExtractedCount} rules from ${report.authorityCode} into DRAFT package: ${destination}`
+    );
+  } else {
+    logger.error(`Ingestion failed for authority '${authority}':`, { warnings: report.warnings });
+    process.exitCode = 1;
+  }
+}
+
+/**
  * Main CLI dispatcher.
  */
-export function main(): void {
-  const [,, command, arg1, arg2] = process.argv;
+export async function main(): Promise<void> {
+  const [,, command, arg1, arg2, arg3] = process.argv;
 
   switch (command) {
     case "validate":
@@ -102,11 +122,16 @@ export function main(): void {
       if (!arg1) return logger.error("Usage: taxpack build <file.json> [out.taxpack.json]");
       handleBuild(arg1, arg2);
       break;
+    case "ingest":
+      if (!arg1) return logger.error("Usage: taxpack ingest <authority: IRS|PA> [taxYear] [outFile.json]");
+      await handleIngest(arg1, arg2, arg3);
+      break;
     default:
-      logger.info("TaxRule Packaging Engine CLI. Commands: validate, test, diff, build.");
+      logger.info("TaxRule Packaging Engine CLI. Commands: validate, test, diff, build, ingest.");
   }
 }
 
 if (process.argv[1]?.endsWith("cli.ts") || process.argv[1]?.endsWith("cli.js")) {
-  main();
+  void main();
 }
+

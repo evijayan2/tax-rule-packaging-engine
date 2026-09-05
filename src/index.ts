@@ -83,5 +83,26 @@ export {
 export { federalTaxPackage2026 } from "./seeds/federal2026.js";
 export { pennsylvaniaTaxPackage2026 } from "./seeds/pennsylvania2026.js";
 
+// Ingestion Pipeline & Adapters
+export * from "./ingestion/types.js";
+export {
+  loadLocalRegulatoryDocument,
+  createRegulatoryDocument,
+  type ILocalFileOptions
+} from "./ingestion/documentFetcher.js";
+export { IrsSourceAdapter } from "./ingestion/adapters/irsAdapter.js";
+export { PennsylvaniaSourceAdapter } from "./ingestion/adapters/paAdapter.js";
+export { synthesizeTestCases } from "./ingestion/testCaseSynthesizer.js";
+export {
+  compileDraftPackage,
+  type ICompileDraftOptions
+} from "./ingestion/draftPackageCompiler.js";
+export {
+  runIngestionPipeline,
+  registerAuthorityAdapter
+} from "./ingestion/ingestionPipeline.js";
+
 // Logging
 export { logger, type ILogger, type LogLevel, type LogEntry } from "./logger/logger.js";
+
+

@@ -58,3 +58,4 @@ describe("boundsValidator", () => {
     expect(res.issues.some((i) => i.code === "BRACKET_DISCONTINUITY")).toBe(true);
   });
 });
+

@@ -27,7 +27,6 @@
   },
   "devDependencies": {
     "@types/node": "^22.14.0",
-    "@vitest/coverage-v8": "^4.1.11",
     "tsx": "^4.21.0",
     "typescript": "~5.8.2",
     "vitest": "^4.1.11"
@@ -42,3 +41,4 @@
   "author": "TaxShield Ledger Core Team",
   "license": "Apache-2.0"
 }
+

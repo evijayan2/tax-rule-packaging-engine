@@ -27,3 +27,4 @@ export function stringifyCanonicalJson(value: unknown): string {
 
   return `{${pairs.join(",")}}`;
 }
+

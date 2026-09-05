@@ -70,3 +70,4 @@ export function verifyVersionChecksum(version: ITaxRuleVersion): boolean {
   const expected = computeVersionChecksum(version);
   return version.checksum === expected;
 }
+

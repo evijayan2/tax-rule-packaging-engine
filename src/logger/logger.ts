@@ -75,3 +75,4 @@ class StructuredLogger implements ILogger {
  * Singleton instance of the structured logger.
  */
 export const logger: ILogger = new StructuredLogger();
+

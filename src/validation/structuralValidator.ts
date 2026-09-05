@@ -51,3 +51,4 @@ export function validateVersionStructure(version: unknown): IValidationResult {
 
   return { isValid: false, issues };
 }
+

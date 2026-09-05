@@ -68,6 +68,39 @@ function synthesizeMileageTestCases(rule: IExtractedTaxRule): ITaxRuleTestCase[]
 }
 
 /**
+ * Synthesizes test cases for progressive tax brackets.
+ */
+function synthesizeBracketTestCases(rule: IExtractedTaxRule): ITaxRuleTestCase[] {
+  const brackets = (rule.additionalParameters?.brackets as any[]) ?? [];
+  const testCases: ITaxRuleTestCase[] = [];
+
+  if (brackets.length > 0) {
+    const b1 = brackets[0];
+    const wage1 = Math.max(1, (b1.incomeTo ?? 2000) / 2);
+    const tax1 = roundToCents(b1.baseTax + (wage1 - b1.incomeFrom) * b1.marginalRate);
+    testCases.push({
+      id: `tc-${rule.ruleCode.toLowerCase()}-01`,
+      description: `Wages $${wage1} in bracket 1 (${b1.marginalRate * 100}%)`,
+      inputPayload: { grossWages: wage1, filingStatus: b1.filingStatus },
+      expectedOutput: { taxAmount: tax1, taxableWages: wage1 }
+    });
+
+    const midIdx = Math.min(2, brackets.length - 1);
+    const bMid = brackets[midIdx];
+    const wageMid = bMid.incomeFrom + 1000;
+    const taxMid = roundToCents(bMid.baseTax + 1000 * bMid.marginalRate);
+    testCases.push({
+      id: `tc-${rule.ruleCode.toLowerCase()}-02`,
+      description: `Wages $${wageMid} in bracket ${bMid.bracketSequence} (${bMid.marginalRate * 100}%)`,
+      inputPayload: { grossWages: wageMid, filingStatus: bMid.filingStatus },
+      expectedOutput: { taxAmount: taxMid, taxableWages: wageMid }
+    });
+  }
+
+  return testCases;
+}
+
+/**
  * Synthesizes automated golden regression test cases for an extracted tax rule.
  * @param rule - The extracted rule definition.
  * @returns Array of valid regression test cases.
@@ -75,6 +108,10 @@ function synthesizeMileageTestCases(rule: IExtractedTaxRule): ITaxRuleTestCase[]
 export function synthesizeTestCases(rule: IExtractedTaxRule): ITaxRuleTestCase[] {
   if (rule.ruleType === "PER_MILE_RATE") {
     return synthesizeMileageTestCases(rule);
+  }
+
+  if (rule.ruleType === "BRACKET_PERCENTAGE") {
+    return synthesizeBracketTestCases(rule);
   }
 
   if (rule.wageCap !== undefined && rule.wageCap > 0) {

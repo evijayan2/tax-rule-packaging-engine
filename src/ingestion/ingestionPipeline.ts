@@ -1,13 +1,19 @@
 import { runValidationPipeline } from "../validation/validationPipeline.js";
 import { IrsSourceAdapter } from "./adapters/irsAdapter.js";
 import { PennsylvaniaSourceAdapter } from "./adapters/paAdapter.js";
+import { TexasSourceAdapter } from "./adapters/txAdapter.js";
+import { DelawareSourceAdapter } from "./adapters/deAdapter.js";
 import { compileDraftPackage } from "./draftPackageCompiler.js";
 import type { IAuthorityAdapter, IIngestionOptions, IIngestionReport } from "./types.js";
 
 const registeredAdapters: Map<string, IAuthorityAdapter> = new Map<string, IAuthorityAdapter>([
   ["IRS", new IrsSourceAdapter()],
   ["PA_DOR", new PennsylvaniaSourceAdapter()],
-  ["PA", new PennsylvaniaSourceAdapter()]
+  ["PA", new PennsylvaniaSourceAdapter()],
+  ["TX_COMPTROLLER", new TexasSourceAdapter()],
+  ["TX", new TexasSourceAdapter()],
+  ["DE_DIV_OF_REVENUE", new DelawareSourceAdapter()],
+  ["DE", new DelawareSourceAdapter()]
 ]);
 
 /**

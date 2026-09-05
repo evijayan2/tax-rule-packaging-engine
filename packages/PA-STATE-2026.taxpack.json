@@ -3,7 +3,7 @@
   "name": "Commonwealth of Pennsylvania Statutory Tax Rules 2026",
   "version": "1.0.0",
   "jurisdictionCode": "PA",
-  "generatedAt": "2026-09-05T15:11:27.315Z",
+  "generatedAt": "2026-09-05T15:30:32.975Z",
   "jurisdictions": [
     {
       "code": "PA",
@@ -72,7 +72,7 @@
             }
           ],
           "checksum": "sha256:5157069642fca36885edfced2004dc1b958016a08420e9ca59e835e6ec680f8f",
-          "publishedAt": "2026-09-05T15:11:27.315Z",
+          "publishedAt": "2026-09-05T15:30:32.975Z",
           "publishedBy": "SYSTEM_GOV_SEALER"
         }
       ]

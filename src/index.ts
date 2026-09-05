@@ -82,6 +82,8 @@ export {
 // Official Reference Seed Packages
 export { federalTaxPackage2026 } from "./seeds/federal2026.js";
 export { pennsylvaniaTaxPackage2026 } from "./seeds/pennsylvania2026.js";
+export { texasTaxPackage2026 } from "./seeds/texas2026.js";
+export { delawareTaxPackage2026 } from "./seeds/delaware2026.js";
 
 // Ingestion Pipeline & Adapters
 export * from "./ingestion/types.js";
@@ -92,6 +94,8 @@ export {
 } from "./ingestion/documentFetcher.js";
 export { IrsSourceAdapter } from "./ingestion/adapters/irsAdapter.js";
 export { PennsylvaniaSourceAdapter } from "./ingestion/adapters/paAdapter.js";
+export { TexasSourceAdapter } from "./ingestion/adapters/txAdapter.js";
+export { DelawareSourceAdapter } from "./ingestion/adapters/deAdapter.js";
 export { synthesizeTestCases } from "./ingestion/testCaseSynthesizer.js";
 export {
   compileDraftPackage,

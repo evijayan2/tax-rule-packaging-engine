@@ -33,3 +33,4 @@ describe("irsAdapter", () => {
     expect(mileage?.rate).toBe(0.67);
   });
 });
+

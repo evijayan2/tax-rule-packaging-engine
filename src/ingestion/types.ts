@@ -71,3 +71,4 @@ export interface IAuthorityAdapter {
 
   fetchSimulatedNotice(taxYear: number): Promise<IRawRegulatoryDocument>;
 }
+

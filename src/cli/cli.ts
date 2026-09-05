@@ -123,7 +123,7 @@ export async function main(): Promise<void> {
       handleBuild(arg1, arg2);
       break;
     case "ingest":
-      if (!arg1) return logger.error("Usage: taxpack ingest <authority: IRS|PA> [taxYear] [outFile.json]");
+      if (!arg1) return logger.error("Usage: taxpack ingest <authority: IRS|PA|TX|DE> [taxYear] [outFile.json]");
       await handleIngest(arg1, arg2, arg3);
       break;
     default:

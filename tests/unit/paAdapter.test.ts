@@ -23,3 +23,4 @@ describe("paAdapter", () => {
     expect(pit.citation.statuteReference).toBe("72 P.S. § 7302; 61 Pa. Code § 101.1");
   });
 });
+

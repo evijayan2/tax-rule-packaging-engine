@@ -74,3 +74,4 @@ describe("Ingestion Pipeline End-to-End Integration", () => {
     expect(report.warnings[0]).toContain("No registered authority adapter found");
   });
 });
+

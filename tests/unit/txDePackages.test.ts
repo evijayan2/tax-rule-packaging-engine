@@ -38,3 +38,4 @@ describe("Texas and Delaware Reference Packages", () => {
     expect(sealed.package.manifestChecksum?.startsWith("sha256:")).toBe(true);
   });
 });
+

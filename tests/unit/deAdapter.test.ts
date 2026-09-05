@@ -35,3 +35,4 @@ describe("deAdapter", () => {
     expect(suta?.citation.statuteReference).toBe("19 Del. C. § 3345");
   });
 });
+

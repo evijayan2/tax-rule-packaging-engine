@@ -61,3 +61,4 @@ describe("testCaseSynthesizer", () => {
     expect(cases[2].expectedOutput.taxableWages).toBe(0);
   });
 });
+

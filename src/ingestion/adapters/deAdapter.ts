@@ -125,3 +125,4 @@ The SUTA wage base limit is $10,500 for tax year ${taxYear}.
     };
   }
 }
+

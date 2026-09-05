@@ -53,6 +53,9 @@ pnpm package:seed
 ## CLI Usage
 
 ```bash
+# Ingest official notices into a draft package (IRS, PA, TX, DE)
+pnpm cli ingest <IRS|PA|TX|DE> [taxYear] [outFile.json]
+
 # Validate a draft package
 pnpm cli validate ./my-package.json
 
@@ -68,7 +71,14 @@ pnpm cli build ./draft.json ./sealed.taxpack.json
 
 ---
 
+## Documentation & Guides
+
+- [Step-by-Step Authoring & Rollover Guide](./HOW_TO_ADD_TAX_RULES.md): Detailed walkthrough for adding new state tax rules (flat rates, progressive brackets, no-tax states, SUTA) and rolling over to new tax years.
+
+---
+
 ## License
 
 Apache-2.0
+
 

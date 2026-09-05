@@ -30,3 +30,4 @@ describe("txAdapter", () => {
     expect(suta?.citation.statuteReference).toBe("Tex. Lab. Code § 204.006");
   });
 });
+

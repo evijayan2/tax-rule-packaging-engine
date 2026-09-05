@@ -39,3 +39,4 @@ describe("draftPackageCompiler", () => {
     expect(pkg.rules[0].versions[0].citations[0].documentHash).toBe("sha256:abc");
   });
 });
+

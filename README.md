@@ -74,6 +74,7 @@ pnpm cli build ./draft.json ./sealed.taxpack.json
 ## Documentation & Guides
 
 - [Step-by-Step Authoring & Rollover Guide](./HOW_TO_ADD_TAX_RULES.md): Detailed walkthrough for adding new state tax rules (flat rates, progressive brackets, no-tax states, SUTA) and rolling over to new tax years.
+- [Official Regulatory Sources Directory (Federal & 50 States)](./OFFICIAL_SOURCES_DIRECTORY.md): Authoritative repository directory, publication links, and URL locator patterns for 2025, 2026, and future years (IRS, SSA, and all 50 states + DC).
 
 ---
 

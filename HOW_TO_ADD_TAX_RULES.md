@@ -23,7 +23,7 @@ Follow these steps when onboarding a new state (e.g. New Jersey, California, Ohi
 
 ### Step 1: Collect Statutory Source Documents
 
-Identify the official governing authorities for personal income tax (DOR/Treasury) and unemployment tax (DOL/Workforce Commission).
+Identify the official governing authorities for personal income tax (DOR/Treasury) and unemployment tax (DOL/Workforce Commission). Consult the [Official Regulatory Sources Directory](./OFFICIAL_SOURCES_DIRECTORY.md) for direct links to all 50 states + Federal for 2025, 2026, and future years.
 
 | Requirement | Example: State Personal Income Tax | Example: State Unemployment (SUTA) |
 | :--- | :--- | :--- |
@@ -251,3 +251,4 @@ pnpm cli diff <base.json> <target.json>
 # Build and cryptographically seal (.taxpack.json)
 pnpm cli build <draft.json> [out.taxpack.json]
 ```
+

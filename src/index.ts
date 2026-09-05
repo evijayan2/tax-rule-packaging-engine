@@ -109,4 +109,15 @@ export {
 // Logging
 export { logger, type ILogger, type LogLevel, type LogEntry } from "./logger/logger.js";
 
+// Distribution Webserver
+export {
+  createPackageServer,
+  createPackageRequestHandler,
+  startPackageServer,
+  buildPackageCatalog,
+  getDefaultPackagesDir,
+  type IPackageCatalogItem,
+  type IPackageServerOptions
+} from "./server/server.js";
+
 

@@ -100,6 +100,15 @@ async function handleIngest(authority: string, yearStr?: string, outPath?: strin
 }
 
 /**
+ * Command: Start local package distribution HTTP server.
+ */
+async function handleServe(portStr?: string): Promise<void> {
+  const { startPackageServer } = await import("../server/server.js");
+  const port = portStr ? parseInt(portStr, 10) : undefined;
+  await startPackageServer({ port });
+}
+
+/**
  * Main CLI dispatcher.
  */
 export async function main(): Promise<void> {
@@ -126,8 +135,11 @@ export async function main(): Promise<void> {
       if (!arg1) return logger.error("Usage: taxpack ingest <authority: IRS|PA|TX|DE> [taxYear] [outFile.json]");
       await handleIngest(arg1, arg2, arg3);
       break;
+    case "serve":
+      await handleServe(arg1);
+      break;
     default:
-      logger.info("TaxRule Packaging Engine CLI. Commands: validate, test, diff, build, ingest.");
+      logger.info("TaxRule Packaging Engine CLI. Commands: validate, test, diff, build, ingest, serve.");
   }
 }
 

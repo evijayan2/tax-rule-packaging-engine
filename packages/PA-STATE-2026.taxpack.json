@@ -1,0 +1,82 @@
+{
+  "packageCode": "PA-STATE-2026",
+  "name": "Commonwealth of Pennsylvania Statutory Tax Rules 2026",
+  "version": "1.0.0",
+  "jurisdictionCode": "PA",
+  "generatedAt": "2026-09-05T15:11:27.315Z",
+  "jurisdictions": [
+    {
+      "code": "PA",
+      "name": "Commonwealth of Pennsylvania",
+      "level": "STATE",
+      "state": "PA",
+      "parentJurisdictionCode": "US-FED"
+    }
+  ],
+  "rules": [
+    {
+      "ruleCode": "PA_PIT_RATE",
+      "name": "Pennsylvania Personal Income Tax (PIT)",
+      "category": "WITHHOLDING",
+      "taxType": "STATE_INCOME_TAX",
+      "jurisdictionCode": "PA",
+      "description": "Pennsylvania state personal income tax flat withholding rate of 3.07% applied to all taxable compensation.",
+      "versions": [
+        {
+          "versionCode": "PA-PIT-2026-v1",
+          "versionNumber": 1,
+          "status": "PUBLISHED",
+          "ruleType": "FLAT_RATE",
+          "ruleData": {
+            "rate": 0.0307
+          },
+          "effectiveFrom": "2026-01-01T00:00:00.000Z",
+          "effectiveTo": null,
+          "createdAt": "2026-01-01T00:00:00.000Z",
+          "createdBy": "SYSTEM_GOV_INGESTION",
+          "citations": [
+            {
+              "authority": "PA_DEPT_OF_REVENUE",
+              "title": "2026 Pennsylvania Employer Withholding Guide (REV-419)",
+              "statuteReference": "72 P.S. § 7302; 61 Pa. Code § 101.1",
+              "sourceUrl": "https://www.revenue.pa.gov/FormsandPublications/FormsforBusinesses/EmployerWithholding/Documents/rev-419.pdf",
+              "publicationDate": "2025-12-01",
+              "citationTier": "TIER_1_OFFICIAL",
+              "excerpt": "The Pennsylvania personal income tax rate is 3.07 percent (0.0307). All taxable compensation is subject to withholding at this rate."
+            }
+          ],
+          "testCases": [
+            {
+              "id": "tc-pa-pit-01",
+              "description": "Standard $1,000 bi-weekly wage PIT withholding",
+              "inputPayload": {
+                "grossWages": 1000
+              },
+              "expectedOutput": {
+                "taxAmount": 30.7,
+                "taxableWages": 1000,
+                "effectiveRate": 0.0307
+              }
+            },
+            {
+              "id": "tc-pa-pit-02",
+              "description": "Standard $5,000 monthly wage PIT withholding",
+              "inputPayload": {
+                "grossWages": 5000
+              },
+              "expectedOutput": {
+                "taxAmount": 153.5,
+                "taxableWages": 5000,
+                "effectiveRate": 0.0307
+              }
+            }
+          ],
+          "checksum": "sha256:5157069642fca36885edfced2004dc1b958016a08420e9ca59e835e6ec680f8f",
+          "publishedAt": "2026-09-05T15:11:27.315Z",
+          "publishedBy": "SYSTEM_GOV_SEALER"
+        }
+      ]
+    }
+  ],
+  "manifestChecksum": "sha256:b4016507a672d57abd629322c7abd57468be8116a35b85a13d9f1771758993ac"
+}

@@ -1,0 +1,44 @@
+{
+  "name": "@taxshield/tax-rule-packaging-engine",
+  "version": "0.1.0",
+  "description": "Deterministic validation, regression testing, diffing, and cryptographic packaging engine for versioned tax rules.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    }
+  },
+  "bin": {
+    "taxpack": "./dist/cli/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "lint": "tsc --noEmit",
+    "cli": "tsx src/cli/cli.ts",
+    "package:seed": "tsx src/cli/seedPackages.ts"
+  },
+  "dependencies": {
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "@vitest/coverage-v8": "^4.1.11",
+    "tsx": "^4.21.0",
+    "typescript": "~5.8.2",
+    "vitest": "^4.1.11"
+  },
+  "keywords": [
+    "taxshield",
+    "tax-rules",
+    "packaging-engine",
+    "compliance",
+    "audit-trail"
+  ],
+  "author": "TaxShield Ledger Core Team",
+  "license": "Apache-2.0"
+}

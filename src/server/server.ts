@@ -84,6 +84,30 @@ function setCorsHeaders(res: ServerResponse): void {
 }
 
 /**
+ * Resolves safe file path for a package download, tolerating colons or missing extensions.
+ */
+function resolvePackagePath(fileName: string, packagesDir: string): { targetPath: string; safeName: string } | null {
+  const normalized = fileName.replace(/^:+/, "").trim();
+  let safeName = basename(normalized);
+  const resolvedDir = resolve(packagesDir);
+  let targetPath = resolve(packagesDir, safeName);
+
+  if (!existsSync(targetPath) && !safeName.endsWith(".taxpack.json")) {
+    const candidateName = `${safeName}.taxpack.json`;
+    const candidatePath = resolve(packagesDir, candidateName);
+    if (existsSync(candidatePath)) {
+      safeName = candidateName;
+      targetPath = candidatePath;
+    }
+  }
+
+  if (!targetPath.startsWith(resolvedDir) || !existsSync(targetPath)) {
+    return null;
+  }
+  return { targetPath, safeName };
+}
+
+/**
  * Serves single package download by safe file name.
  */
 function handlePackageDownload(
@@ -91,19 +115,21 @@ function handlePackageDownload(
   packagesDir: string,
   res: ServerResponse
 ): void {
-  const safeName = basename(fileName);
-  const targetPath = resolve(packagesDir, safeName);
-
-  if (!targetPath.startsWith(resolve(packagesDir)) || !existsSync(targetPath)) {
+  const resolved = resolvePackagePath(fileName, packagesDir);
+  if (!resolved) {
     res.writeHead(404, { "Content-Type": "application/json" });
-    res.end(JSON.stringify({ error: "Package not found" }));
+    res.end(JSON.stringify({
+      error: "Package not found",
+      requested: fileName,
+      hint: "Omit any leading colon ':' in the URL. Example: /packages/US-FED-2026.taxpack.json"
+    }));
     return;
   }
 
-  const content = readFileSync(targetPath, "utf8");
+  const content = readFileSync(resolved.targetPath, "utf8");
   res.writeHead(200, {
     "Content-Type": "application/json",
-    "Content-Disposition": `attachment; filename="${safeName}"`
+    "Content-Disposition": `attachment; filename="${resolved.safeName}"`
   });
   res.end(content);
 }
@@ -183,3 +209,4 @@ if (process.argv[1]?.endsWith("server.ts") || process.argv[1]?.endsWith("server.
   const requestedPort = process.argv[2] ? Number(process.argv[2]) : undefined;
   void startPackageServer({ port: requestedPort });
 }
+

@@ -70,8 +70,26 @@ describe("Package Distribution Server", () => {
     expect(pkg.rules.length).toBe(3);
   });
 
-  it("returns 404 on non-existent package download", async () => {
+  it("tolerates leading colon in route parameter e.g. /packages/:US-FED-2026.taxpack.json", async () => {
+    const res = await fetch(`${baseUrl}/packages/:US-FED-2026.taxpack.json`);
+    expect(res.status).toBe(200);
+    const pkg = (await res.json()) as { packageCode: string };
+    expect(pkg.packageCode).toBe("US-FED-2026");
+  });
+
+  it("tolerates omitted .taxpack.json extension e.g. /packages/US-FED-2026", async () => {
+    const res = await fetch(`${baseUrl}/packages/US-FED-2026`);
+    expect(res.status).toBe(200);
+    const pkg = (await res.json()) as { packageCode: string };
+    expect(pkg.packageCode).toBe("US-FED-2026");
+  });
+
+  it("returns 404 with friendly hint on non-existent package download", async () => {
     const res = await fetch(`${baseUrl}/packages/NON-EXISTENT.taxpack.json`);
     expect(res.status).toBe(404);
+    const body = (await res.json()) as { error: string; hint: string };
+    expect(body.error).toBe("Package not found");
+    expect(body.hint).toBeDefined();
   });
 });
+

@@ -39,10 +39,16 @@ function extractTexasSutaRule(
   taxYear: number
 ): IExtractedTaxRule {
   const capMatch = doc.content.match(/suta wage (?:base|cap).*?\$?([\d,]+)/i);
-  const wageCap = capMatch ? Number(capMatch[1].replace(/,/g, "")) : 9000;
+  if (!capMatch) {
+    throw new Error(`Failed to extract Texas SUTA wage cap from document [${doc.title}]. Regex pattern match failed.`);
+  }
+  const wageCap = Number(capMatch[1].replace(/,/g, ""));
 
-  const rateMatch = doc.content.match(/twc entry rate is ([\d.]+)%/i);
-  const rate = rateMatch ? Number((Number(rateMatch[1]) / 100).toFixed(6)) : 0.027;
+  const rateMatch = doc.content.match(/(?:twc|standard)?\s*entry rate is ([\d.]+)%/i);
+  if (!rateMatch) {
+    throw new Error(`Failed to extract Texas SUTA tax rate from document [${doc.title}]. Regex pattern match failed.`);
+  }
+  const rate = Number((Number(rateMatch[1]) / 100).toFixed(6));
 
   return {
     ruleCode: "TX_SUTA_EMPLOYER",

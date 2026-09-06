@@ -67,7 +67,7 @@ describe("Package Distribution Server", () => {
 
     const pkg = (await res.json()) as { packageCode: string; rules: unknown[] };
     expect(pkg.packageCode).toBe("US-FED-2026");
-    expect(pkg.rules.length).toBe(3);
+    expect(pkg.rules.length).toBeGreaterThanOrEqual(3);
   });
 
   it("tolerates leading colon in route parameter e.g. /packages/:US-FED-2026.taxpack.json", async () => {

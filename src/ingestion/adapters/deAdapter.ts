@@ -51,10 +51,16 @@ function extractDelawareSutaRule(
   taxYear: number
 ): IExtractedTaxRule {
   const capMatch = doc.content.match(/suta wage (?:base|cap).*?\$?([\d,]+)/i);
-  const wageCap = capMatch ? Number(capMatch[1].replace(/,/g, "")) : 10500;
+  if (!capMatch) {
+    throw new Error(`Failed to extract Delaware SUTA wage cap from document [${doc.title}]. Regex pattern match failed.`);
+  }
+  const wageCap = Number(capMatch[1].replace(/,/g, ""));
 
   const rateMatch = doc.content.match(/new employer suta rate is ([\d.]+)%/i);
-  const rate = rateMatch ? Number((Number(rateMatch[1]) / 100).toFixed(6)) : 0.023;
+  if (!rateMatch) {
+    throw new Error(`Failed to extract Delaware SUTA tax rate from document [${doc.title}]. Regex pattern match failed.`);
+  }
+  const rate = Number((Number(rateMatch[1]) / 100).toFixed(6));
 
   return {
     ruleCode: "DE_SUTA_EMPLOYER",

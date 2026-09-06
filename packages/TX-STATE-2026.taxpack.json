@@ -3,7 +3,7 @@
   "name": "State of Texas Statutory Tax Rules 2026",
   "version": "1.0.0",
   "jurisdictionCode": "TX",
-  "generatedAt": "2026-09-05T15:30:32.976Z",
+  "generatedAt": "2026-09-06T14:46:08.666Z",
   "jurisdictions": [
     {
       "code": "TX",
@@ -72,7 +72,7 @@
             }
           ],
           "checksum": "sha256:afe5ecab90805e4339d999549d82746b50aafcd8e587e1411634016a588c3b19",
-          "publishedAt": "2026-09-05T15:30:32.976Z",
+          "publishedAt": "2026-09-06T14:46:08.666Z",
           "publishedBy": "SYSTEM_GOV_SEALER"
         }
       ]
@@ -151,7 +151,7 @@
             }
           ],
           "checksum": "sha256:beec7c961666d8f684c0c2ee8352aaaa0466fcf577a504fe496d97a52be86167",
-          "publishedAt": "2026-09-05T15:30:32.976Z",
+          "publishedAt": "2026-09-06T14:46:08.666Z",
           "publishedBy": "SYSTEM_GOV_SEALER"
         }
       ]

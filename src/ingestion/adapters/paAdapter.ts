@@ -9,7 +9,10 @@ function extractPennsylvaniaPitRule(
   taxYear: number
 ): IExtractedTaxRule {
   const rateMatch = doc.content.match(/personal income tax rate is ([\d.]+) percent/i);
-  const rate = rateMatch ? Number((Number(rateMatch[1]) / 100).toFixed(6)) : 0.0307;
+  if (!rateMatch) {
+    throw new Error(`Failed to extract PA Personal Income Tax rate from document [${doc.title}]. Regex pattern match failed.`);
+  }
+  const rate = Number((Number(rateMatch[1]) / 100).toFixed(6));
 
   return {
     ruleCode: "PA_PIT_RATE",

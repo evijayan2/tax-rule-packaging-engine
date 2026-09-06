@@ -38,19 +38,25 @@ function evaluateBrackets(
 ): Record<string, unknown> {
   const grossWages = Number(input.grossWages ?? 0);
   const filingStatus = String(input.filingStatus ?? "SINGLE");
-  const brackets: ITaxBracket[] = (version.ruleData.brackets as ITaxBracket[]) ?? [];
-
-  const matched = brackets
-    .filter((b) => b.filingStatus === filingStatus)
-    .sort((a, b) => a.bracketSequence - b.bracketSequence);
+  const rawBrackets = version.ruleData.brackets;
+  const bracketList: any[] = Array.isArray(rawBrackets)
+    ? rawBrackets.filter((b: any) => !b.filingStatus || b.filingStatus === filingStatus)
+    : rawBrackets && typeof rawBrackets === "object"
+    ? (rawBrackets[filingStatus] as any[]) ?? (rawBrackets["SINGLE"] as any[]) ?? []
+    : [];
 
   let taxAmount = 0;
-  for (const b of matched) {
-    if (grossWages > b.incomeFrom) {
-      const taxableInBracket = b.incomeTo !== null && b.incomeTo !== undefined
-        ? Math.min(grossWages - b.incomeFrom, b.incomeTo - b.incomeFrom)
-        : grossWages - b.incomeFrom;
-      taxAmount = roundToCents(b.baseTax + taxableInBracket * b.marginalRate);
+  for (const b of bracketList) {
+    const low = b.incomeFrom ?? b.over ?? 0;
+    const high = b.incomeTo ?? b.max ?? null;
+    const base = b.baseTax ?? 0;
+    const rate = b.marginalRate ?? b.rate ?? 0;
+
+    if (grossWages > low) {
+      const taxableInBracket = high !== null && high !== undefined
+        ? Math.min(grossWages - low, high - low)
+        : grossWages - low;
+      taxAmount = roundToCents(base + taxableInBracket * rate);
     }
   }
 

@@ -1,18 +1,18 @@
 import type { ITaxRulePackage } from "../domain/types.js";
 
 /**
- * Authoritative 2026 Pennsylvania State Tax Rule Package for Personal Income Tax (PIT).
- * Governed by PA Department of Revenue REV-419 Employer Withholding Guide.
+ * Authoritative 2026 Pennsylvania State Tax Rule Package for Personal Income Tax (PIT) and Unemployment Compensation (UC).
+ * Governed by PA Department of Revenue REV-419 Employer Withholding Guide and PA UC Law.
  */
 export const pennsylvaniaTaxPackage2026: ITaxRulePackage = {
   packageCode: "PA-STATE-2026",
   name: "Commonwealth of Pennsylvania Statutory Tax Rules 2026",
   version: "1.0.0",
-  jurisdictionCode: "PA",
+  jurisdictionCode: "PA-STATE",
   generatedAt: "2026-01-01T00:00:00.000Z",
   jurisdictions: [
     {
-      code: "PA",
+      code: "PA-STATE",
       name: "Commonwealth of Pennsylvania",
       level: "STATE",
       state: "PA",
@@ -21,15 +21,15 @@ export const pennsylvaniaTaxPackage2026: ITaxRulePackage = {
   ],
   rules: [
     {
-      ruleCode: "PA_PIT_RATE",
-      name: "Pennsylvania Personal Income Tax (PIT)",
+      ruleCode: "PA_SIT_RATE",
+      name: "Pennsylvania Personal Income Tax (PIT / SIT)",
       category: "WITHHOLDING",
       taxType: "STATE_INCOME_TAX",
-      jurisdictionCode: "PA",
+      jurisdictionCode: "PA-STATE",
       description: "Pennsylvania state personal income tax flat withholding rate of 3.07% applied to all taxable compensation.",
       versions: [
         {
-          versionCode: "PA-PIT-2026-v1",
+          versionCode: "PA-SIT-2026-v1",
           versionNumber: 1,
           status: "DRAFT",
           ruleType: "FLAT_RATE",
@@ -53,16 +53,95 @@ export const pennsylvaniaTaxPackage2026: ITaxRulePackage = {
           ],
           testCases: [
             {
-              id: "tc-pa-pit-01",
-              description: "Standard $1,000 bi-weekly wage PIT withholding",
+              id: "tc-pa-sit-01",
+              description: "Standard $1,000 bi-weekly wage SIT withholding",
               inputPayload: { grossWages: 1000 },
               expectedOutput: { taxAmount: 30.7, taxableWages: 1000, effectiveRate: 0.0307 }
-            },
+            }
+          ]
+        }
+      ]
+    },
+    {
+      ruleCode: "PA_PIT_RATE",
+      name: "Pennsylvania Personal Income Tax Alias (PIT)",
+      category: "WITHHOLDING",
+      taxType: "STATE_INCOME_TAX",
+      jurisdictionCode: "PA-STATE",
+      description: "Pennsylvania state personal income tax flat withholding rate of 3.07% (PIT alias).",
+      versions: [
+        {
+          versionCode: "PA-PIT-2026-v1",
+          versionNumber: 1,
+          status: "DRAFT",
+          ruleType: "FLAT_RATE",
+          ruleData: {
+            rate: 0.0307
+          },
+          effectiveFrom: "2026-01-01T00:00:00.000Z",
+          effectiveTo: null,
+          createdAt: "2026-01-01T00:00:00.000Z",
+          createdBy: "SYSTEM_GOV_INGESTION",
+          citations: [
             {
-              id: "tc-pa-pit-02",
-              description: "Standard $5,000 monthly wage PIT withholding",
-              inputPayload: { grossWages: 5000 },
-              expectedOutput: { taxAmount: 153.5, taxableWages: 5000, effectiveRate: 0.0307 }
+              authority: "PA_DEPT_OF_REVENUE",
+              title: "2026 Pennsylvania Employer Withholding Guide (REV-419)",
+              statuteReference: "72 P.S. § 7302",
+              sourceUrl: "https://www.revenue.pa.gov",
+              publicationDate: "2025-12-01",
+              citationTier: "TIER_1_OFFICIAL",
+              excerpt: "The Pennsylvania personal income tax rate is 3.07 percent."
+            }
+          ],
+          testCases: [
+            {
+              id: "tc-pa-pit-01",
+              description: "Standard $1,000 wage PIT withholding",
+              inputPayload: { grossWages: 1000 },
+              expectedOutput: { taxAmount: 30.7, taxableWages: 1000, effectiveRate: 0.0307 }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      ruleCode: "PA_UC_EMPLOYER",
+      name: "Pennsylvania UC Employer Rate",
+      category: "EMPLOYER_TAX",
+      taxType: "STATE_UNEMPLOYMENT_TAX",
+      jurisdictionCode: "PA-STATE",
+      description: "Pennsylvania Unemployment Compensation new employer rate (3.5% on $10,000 wage cap).",
+      versions: [
+        {
+          versionCode: "PA-UC-2026-v1",
+          versionNumber: 1,
+          status: "DRAFT",
+          ruleType: "FLAT_RATE",
+          ruleData: {
+            rate: 0.035,
+            wageCap: 10000
+          },
+          effectiveFrom: "2026-01-01T00:00:00.000Z",
+          effectiveTo: null,
+          createdAt: "2026-01-01T00:00:00.000Z",
+          createdBy: "SYSTEM_GOV_INGESTION",
+          citations: [
+            {
+              authority: "PA Dept of Labor & Industry",
+              title: "PA UC Employer Rate Schedule 2026",
+              statuteReference: "43 P.S. § 781",
+              sourceUrl: "https://www.uc.pa.gov",
+              publicationDate: "2025-12-01",
+              citationTier: "TIER_1_OFFICIAL",
+              excerpt: "Pennsylvania Unemployment Compensation new employer standard rate."
+            }
+          ],
+          testCases: [
+            {
+              id: "tc-pa-uc-01",
+              description: "PA UC employer contribution",
+              inputPayload: { grossWages: 5000, priorCumulativeWages: 0 },
+              expectedOutput: { taxAmount: 175.0, taxableWages: 5000, effectiveRate: 0.035 }
             }
           ]
         }
@@ -70,4 +149,3 @@ export const pennsylvaniaTaxPackage2026: ITaxRulePackage = {
     }
   ]
 };
-

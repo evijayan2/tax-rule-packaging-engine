@@ -19,15 +19,22 @@ export const delawareTaxPackage2026: ITaxRulePackage = {
   packageCode: "DE-STATE-2026",
   name: "State of Delaware Statutory Tax Rules 2026",
   version: "1.0.0",
-  jurisdictionCode: "DE",
+  jurisdictionCode: "DE-STATE",
   generatedAt: "2026-01-01T00:00:00.000Z",
   jurisdictions: [
     {
-      code: "DE",
+      code: "DE-STATE",
       name: "State of Delaware",
       level: "STATE",
       state: "DE",
       parentJurisdictionCode: "US-FED"
+    },
+    {
+      code: "DE-LOCAL-WILMINGTON",
+      name: "City of Wilmington",
+      level: "CITY",
+      state: "DE",
+      parentJurisdictionCode: "DE-STATE"
     }
   ],
   rules: [
@@ -36,7 +43,7 @@ export const delawareTaxPackage2026: ITaxRulePackage = {
       name: "Delaware Personal Income Tax Graduated Brackets",
       category: "WITHHOLDING",
       taxType: "STATE_INCOME_TAX",
-      jurisdictionCode: "DE",
+      jurisdictionCode: "DE-STATE",
       description: "Delaware state personal income tax graduated progressive brackets (0% up to 6.6%).",
       versions: [
         {
@@ -90,7 +97,7 @@ export const delawareTaxPackage2026: ITaxRulePackage = {
       name: "Delaware SUTA Unemployment Tax Employer Rate",
       category: "EMPLOYER_TAX",
       taxType: "STATE_UNEMPLOYMENT_TAX",
-      jurisdictionCode: "DE",
+      jurisdictionCode: "DE-STATE",
       description: "Delaware Department of Labor new employer SUTA tax rate (2.3% on $10,500 wage cap).",
       versions: [
         {
@@ -129,6 +136,48 @@ export const delawareTaxPackage2026: ITaxRulePackage = {
               description: "Wage reaching $10,500 SUTA cap",
               inputPayload: { grossWages: 5000, priorCumulativeWages: 8000 },
               expectedOutput: { taxAmount: 57.5, taxableWages: 2500, effectiveRate: 0.023 }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      ruleCode: "DE_WILMINGTON_EIT",
+      name: "City of Wilmington Earned Income Tax Rate",
+      category: "WITHHOLDING",
+      taxType: "LOCAL_INCOME_TAX",
+      jurisdictionCode: "DE-LOCAL-WILMINGTON",
+      description: "City of Wilmington local earned income tax flat rate (1.25%).",
+      versions: [
+        {
+          versionCode: "DE-WILMINGTON-EIT-2026-v1",
+          versionNumber: 1,
+          status: "DRAFT",
+          ruleType: "FLAT_RATE",
+          ruleData: {
+            rate: 0.0125
+          },
+          effectiveFrom: "2026-01-01T00:00:00.000Z",
+          effectiveTo: null,
+          createdAt: "2026-01-01T00:00:00.000Z",
+          createdBy: "SYSTEM_GOV_INGESTION",
+          citations: [
+            {
+              authority: "City of Wilmington Finance Department",
+              title: "City of Wilmington Wage Tax Ordinance 2026",
+              statuteReference: "Wilmington City Code § 44-31",
+              sourceUrl: "https://www.wilmingtonde.gov/government/city-departments/finance",
+              publicationDate: "2025-12-15",
+              citationTier: "TIER_1_OFFICIAL",
+              excerpt: "City of Wilmington earned income tax rate is 1.25%."
+            }
+          ],
+          testCases: [
+            {
+              id: "tc-de-wilm-01",
+              description: "Wilmington local EIT calculation",
+              inputPayload: { grossWages: 1000 },
+              expectedOutput: { taxAmount: 12.50, taxableWages: 1000, effectiveRate: 0.0125 }
             }
           ]
         }

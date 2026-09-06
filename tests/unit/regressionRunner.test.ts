@@ -9,15 +9,15 @@ describe("regressionRunner", () => {
     const report = runPackageRegressionTests(federalTaxPackage2026);
     expect(report.passed).toBe(true);
     expect(report.failCount).toBe(0);
-    expect(report.passCount).toBe(6); // 3 SS + 2 Med + 1 Mileage
-    expect(report.totalTests).toBe(6);
+    expect(report.passCount).toBe(7); // 3 SS + 2 Med + 1 FIT + 1 Mileage
+    expect(report.totalTests).toBe(7);
   });
 
   it("passes 100% of pennsylvania 2026 bundled regression tests", () => {
     const report = runPackageRegressionTests(pennsylvaniaTaxPackage2026);
     expect(report.passed).toBe(true);
     expect(report.failCount).toBe(0);
-    expect(report.passCount).toBe(2);
+    expect(report.passCount).toBe(3);
   });
 
   it("detects failing regression test case", () => {

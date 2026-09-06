@@ -62,7 +62,7 @@ describe("testEvaluator", () => {
   });
 
   it("calculates standard mileage", () => {
-    const mileageVersion = federalTaxPackage2026.rules[2].versions[0];
+    const mileageVersion = federalTaxPackage2026.rules.find(r => r.ruleCode === "IRS_MILEAGE")!.versions[0];
     const res = evaluateRuleVersion(mileageVersion, { miles: 250 });
     expect(res.reimbursementAmount).toBe(167.5); // 250 * 0.67
   });

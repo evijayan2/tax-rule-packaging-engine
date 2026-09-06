@@ -29,7 +29,7 @@ describe("Texas and Delaware Reference Packages", () => {
     const reg = runPackageRegressionTests(delawareTaxPackage2026);
     expect(reg.passed).toBe(true);
     expect(reg.failCount).toBe(0);
-    expect(reg.passCount).toBe(5); // 3 PIT + 2 SUTA
+    expect(reg.passCount).toBe(6); // 3 PIT + 2 SUTA + 1 Wilmington EIT
 
     const sealed = buildTaxRulePackage(delawareTaxPackage2026, {
       publisherId: "TEST_SEALER",

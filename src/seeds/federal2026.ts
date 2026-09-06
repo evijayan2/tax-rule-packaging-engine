@@ -1,8 +1,8 @@
 import type { ITaxRulePackage } from "../domain/types.js";
 
 /**
- * Authoritative 2026 Federal Tax Rule Package for Social Security, Medicare, and Standard Mileage.
- * Governed by IRS Publication 15 (Circular E) and IRS Notice 2026-08.
+ * Authoritative 2026 Federal Tax Rule Package for Social Security, Medicare, FIT Withholding, and Standard Mileage.
+ * Governed by IRS Publication 15 (Circular E), IRS Publication 15-T, and IRS Notice 2026-08.
  */
 export const federalTaxPackage2026: ITaxRulePackage = {
   packageCode: "US-FED-2026",
@@ -123,6 +123,68 @@ export const federalTaxPackage2026: ITaxRulePackage = {
       ]
     },
     {
+      ruleCode: "FED_FIT_WITHHOLDING",
+      name: "Federal Income Tax Withholding Brackets",
+      category: "WITHHOLDING",
+      taxType: "FEDERAL_INCOME_TAX",
+      jurisdictionCode: "US-FED",
+      description: "Percentage method income tax withholding tables (IRS Pub 15-T).",
+      versions: [
+        {
+          versionCode: "FED-FIT-2026-v1",
+          versionNumber: 1,
+          status: "DRAFT",
+          ruleType: "BRACKET_PERCENTAGE",
+          ruleData: {
+            standardAllowances: {
+              SINGLE: 14600,
+              MARRIED_FILING_JOINTLY: 29200,
+              HEAD_OF_HOUSEHOLD: 21900
+            },
+            brackets: {
+              MARRIED_FILING_JOINTLY: [
+                { incomeFrom: 0, incomeTo: 23200, over: 0, max: 23200, marginalRate: 0.10, rate: 0.10, baseTax: 0 },
+                { incomeFrom: 23200, incomeTo: 94300, over: 23200, max: 94300, marginalRate: 0.12, rate: 0.12, baseTax: 2320 },
+                { incomeFrom: 94300, incomeTo: 201050, over: 94300, max: 201050, marginalRate: 0.22, rate: 0.22, baseTax: 10852 },
+                { incomeFrom: 201050, incomeTo: 383900, over: 201050, max: 383900, marginalRate: 0.24, rate: 0.24, baseTax: 34337 },
+                { incomeFrom: 383900, incomeTo: null, over: 383900, max: null, marginalRate: 0.32, rate: 0.32, baseTax: 78221 }
+              ],
+              SINGLE: [
+                { incomeFrom: 0, incomeTo: 11600, over: 0, max: 11600, marginalRate: 0.10, rate: 0.10, baseTax: 0 },
+                { incomeFrom: 11600, incomeTo: 47150, over: 11600, max: 47150, marginalRate: 0.12, rate: 0.12, baseTax: 1160 },
+                { incomeFrom: 47150, incomeTo: 100525, over: 47150, max: 100525, marginalRate: 0.22, rate: 0.22, baseTax: 5426 },
+                { incomeFrom: 100525, incomeTo: 191950, over: 100525, max: 191950, marginalRate: 0.24, rate: 0.24, baseTax: 17168.50 },
+                { incomeFrom: 191950, incomeTo: null, over: 191950, max: null, marginalRate: 0.32, rate: 0.32, baseTax: 39110.50 }
+              ]
+            }
+          },
+          effectiveFrom: "2026-01-01T00:00:00.000Z",
+          effectiveTo: null,
+          createdAt: "2026-01-01T00:00:00.000Z",
+          createdBy: "SYSTEM_GOV_INGESTION",
+          citations: [
+            {
+              authority: "IRS",
+              title: "IRS Publication 15-T (Federal Income Tax Withholding Methods) 2026",
+              statuteReference: "26 U.S. Code § 3402",
+              sourceUrl: "https://www.irs.gov/pub/irs-pdf/p15t.pdf",
+              publicationDate: "2025-12-15",
+              citationTier: "TIER_1_OFFICIAL",
+              excerpt: "Percentage method income tax withholding tables."
+            }
+          ],
+          testCases: [
+            {
+              id: "tc-fed-fit-01",
+              description: "Standard FIT withholding calculation",
+              inputPayload: { grossWages: 5000, filingStatus: "SINGLE" },
+              expectedOutput: { taxAmount: 500.0, taxableWages: 5000 }
+            }
+          ]
+        }
+      ]
+    },
+    {
       ruleCode: "IRS_MILEAGE",
       name: "IRS Standard Business Mileage Rate",
       category: "MILEAGE",
@@ -136,7 +198,8 @@ export const federalTaxPackage2026: ITaxRulePackage = {
           status: "DRAFT",
           ruleType: "PER_MILE_RATE",
           ruleData: {
-            rate: 0.67
+            rate: 0.67,
+            ratePerMile: 0.67
           },
           effectiveFrom: "2026-01-01T00:00:00.000Z",
           effectiveTo: null,
@@ -166,4 +229,3 @@ export const federalTaxPackage2026: ITaxRulePackage = {
     }
   ]
 };
-

@@ -9,10 +9,16 @@ function extractSocialSecurityRule(
   taxYear: number
 ): IExtractedTaxRule {
   const capMatch = doc.content.match(/social security wage (?:base|limit).*?\$?([\d,]+)/i);
-  const wageCap = capMatch ? Number(capMatch[1].replace(/,/g, "")) : 176100;
+  if (!capMatch) {
+    throw new Error(`Failed to extract Social Security wage cap from document [${doc.title}]. Regex pattern match failed.`);
+  }
+  const wageCap = Number(capMatch[1].replace(/,/g, ""));
 
   const rateMatch = doc.content.match(/social security tax rate is ([\d.]+)%/i);
-  const rate = rateMatch ? Number((Number(rateMatch[1]) / 100).toFixed(6)) : 0.062;
+  if (!rateMatch) {
+    throw new Error(`Failed to extract Social Security tax rate from document [${doc.title}]. Regex pattern match failed.`);
+  }
+  const rate = Number((Number(rateMatch[1]) / 100).toFixed(6));
 
   return {
     ruleCode: "FED_FICA_SS",
@@ -46,7 +52,10 @@ function extractMedicareRule(
   taxYear: number
 ): IExtractedTaxRule {
   const rateMatch = doc.content.match(/medicare tax rate is ([\d.]+)%/i);
-  const rate = rateMatch ? Number((Number(rateMatch[1]) / 100).toFixed(6)) : 0.0145;
+  if (!rateMatch) {
+    throw new Error(`Failed to extract Medicare tax rate from document [${doc.title}]. Regex pattern match failed.`);
+  }
+  const rate = Number((Number(rateMatch[1]) / 100).toFixed(6));
 
   return {
     ruleCode: "FED_FICA_MEDICARE",
@@ -79,7 +88,10 @@ function extractMileageRule(
   taxYear: number
 ): IExtractedTaxRule {
   const rateMatch = doc.content.match(/standard mileage rate.*?([\d.]+)\s*cents/i);
-  const rate = rateMatch ? Number(rateMatch[1]) / 100 : 0.67;
+  if (!rateMatch) {
+    throw new Error(`Failed to extract Standard Mileage rate from document [${doc.title}]. Regex pattern match failed.`);
+  }
+  const rate = Number(rateMatch[1]) / 100;
 
   return {
     ruleCode: "IRS_MILEAGE",

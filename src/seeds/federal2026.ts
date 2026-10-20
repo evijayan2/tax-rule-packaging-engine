@@ -226,6 +226,55 @@ export const federalTaxPackage2026: ITaxRulePackage = {
           ]
         }
       ]
+    },
+    {
+      ruleCode: "FED_1099_NEC_THRESHOLD",
+      name: "IRS Form 1099-NEC Nonemployee Compensation Reporting Threshold",
+      category: "COMPLIANCE_REPORTING",
+      taxType: "INFORMATION_RETURN_1099",
+      jurisdictionCode: "US-FED",
+      description: "Statutory threshold for required Form 1099-NEC nonemployee compensation reporting ($600.00).",
+      versions: [
+        {
+          versionCode: "FED-1099-NEC-THRESHOLD-2026-v1",
+          versionNumber: 1,
+          status: "DRAFT",
+          ruleType: "THRESHOLD",
+          ruleData: {
+            threshold: 600.0
+          },
+          effectiveFrom: "2026-01-01T00:00:00.000Z",
+          effectiveTo: null,
+          createdAt: "2026-01-01T00:00:00.000Z",
+          createdBy: "SYSTEM_GOV_INGESTION",
+          citations: [
+            {
+              authority: "IRS",
+              title: "IRS Instructions for Forms 1099-MISC and 1099-NEC (2026)",
+              statuteReference: "26 U.S. Code § 6041(a); Treas. Reg. § 1.6041-1",
+              sourceUrl: "https://www.irs.gov/instructions/i1099msc",
+              publicationDate: "2025-12-15",
+              citationTier: "TIER_1_OFFICIAL",
+              excerpt: "File Form 1099-NEC for each person in the course of your trade or business to whom you have paid at least $600 in services performed by someone who is not your employee."
+            }
+          ],
+          testCases: [
+            {
+              id: "tc-fed-1099-01",
+              description: "Compensation exactly equals statutory threshold",
+              inputPayload: { amount: 600.0 },
+              expectedOutput: { thresholdMet: true, amount: 600.0, threshold: 600.0 }
+            },
+            {
+              id: "tc-fed-1099-02",
+              description: "Compensation strictly below statutory threshold",
+              inputPayload: { amount: 599.99 },
+              expectedOutput: { thresholdMet: false, amount: 599.99, threshold: 600.0 }
+            }
+          ]
+        }
+      ]
     }
   ]
 };
+

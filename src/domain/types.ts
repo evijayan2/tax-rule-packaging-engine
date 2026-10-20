@@ -97,9 +97,10 @@ export interface ITaxRuleTestCase {
 export interface ITaxRuleData {
   rate?: number;
   wageCap?: number;
+  threshold?: number;
   supplementalRate?: number;
   annualAllowance?: number;
-  brackets?: ITaxBracket[];
+  brackets?: ITaxBracket[] | Record<string, any>;
   parameters?: ITaxParameter[];
   [key: string]: unknown;
 }

@@ -9,8 +9,8 @@ describe("regressionRunner", () => {
     const report = runPackageRegressionTests(federalTaxPackage2026);
     expect(report.passed).toBe(true);
     expect(report.failCount).toBe(0);
-    expect(report.passCount).toBe(7); // 3 SS + 2 Med + 1 FIT + 1 Mileage
-    expect(report.totalTests).toBe(7);
+    expect(report.passCount).toBe(9); // 3 SS + 2 Med + 1 FIT + 1 Mileage + 2 1099 Threshold
+    expect(report.totalTests).toBe(9);
   });
 
   it("passes 100% of pennsylvania 2026 bundled regression tests", () => {

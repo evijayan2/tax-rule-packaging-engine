@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TaxShield Ledger — Tax Rule Package Server</title>
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card-bg: rgba(17, 24, 39, 0.75);
+      --border: rgba(255, 255, 255, 0.1);
+      --text: #f3f4f6;
+      --text-muted: #9ca3af;
+      --accent: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.2);
+      --success: #34d399;
+      --code-bg: rgba(0, 0, 0, 0.4);
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f8fafc;
+        --card-bg: rgba(255, 255, 255, 0.85);
+        --border: rgba(0, 0, 0, 0.08);
+        --text: #0f172a;
+        --text-muted: #64748b;
+        --accent: #0284c7;
+        --accent-glow: rgba(2, 132, 199, 0.15);
+        --success: #059669;
+        --code-bg: rgba(241, 245, 249, 0.9);
+      }
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      line-height: 1.5;
+    }
+    .container {
+      max-width: 680px;
+      width: 100%;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 2.5rem;
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.3);
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      background: rgba(52, 211, 153, 0.15);
+      border: 1px solid rgba(52, 211, 153, 0.3);
+      color: var(--success);
+      font-size: 0.8rem;
+      font-weight: 600;
+      border-radius: 9999px;
+      margin-bottom: 1.25rem;
+    }
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--success);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--success);
+    }
+    h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+    p.subtitle {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+    }
+    h2 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 1.5rem 0 0.75rem;
+      color: var(--text);
+    }
+    .endpoint-card {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.85rem 1rem;
+      margin-bottom: 0.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.9rem;
+    }
+    .endpoint-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .endpoint-link:hover {
+      text-decoration: underline;
+    }
+    .method {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: var(--accent-glow);
+      color: var(--accent);
+    }
+    .footer {
+      margin-top: 2rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="badge">
+      <span class="badge-dot"></span> Active & Ready
+    </div>
+    <h1>TaxShield Ledger</h1>
+    <p class="subtitle">Deterministic Tax Rule Package Distribution Server. Governed by <em>"Tax law is data, not application code."</em></p>
+
+    <h2>API Endpoints</h2>
+
+    <div class="endpoint-card">
+      <a class="endpoint-link" href="/health">
+        <span class="method">GET</span> /health
+      </a>
+      <span style="font-size: 0.8rem; color: var(--text-muted);">Health Status</span>
+    </div>
+
+    <div class="endpoint-card">
+      <a class="endpoint-link" href="/packages">
+        <span class="method">GET</span> /packages
+      </a>
+      <span style="font-size: 0.8rem; color: var(--text-muted);">Catalog & Manifests</span>
+    </div>
+
+    <div class="endpoint-card">
+      <span style="color: var(--text-muted); font-size: 0.85rem;">
+        <span class="method">GET</span> /packages/:fileName
+      </span>
+      <span style="font-size: 0.8rem; color: var(--text-muted);">Sealed .taxpack.json</span>
+    </div>
+
+    <div class="footer">
+      <span>Module 1: Versioned Tax Rules Engine</span>
+      <span>Vercel Serverless</span>
+    </div>
+  </div>
+</body>
+</html>

@@ -78,6 +78,22 @@ pnpm cli build ./draft.json ./sealed.taxpack.json
 
 ---
 
+## CI/CD & Vercel Production Deployment
+
+Continuous Integration and Continuous Deployment are automated with GitHub Actions:
+
+- **CI Pipeline (`.github/workflows/ci.yml`)**: Runs on pull requests to `main`. Executes `pnpm lint`, `pnpm test`, and `pnpm build`. PRs are gated on 100% test pass rate.
+- **Production Deployment (`.github/workflows/deploy.yml`)**: Triggered when a PR merges to `main`. First enforces the CI test gate, then installs the Vercel CLI and performs production deployment (`vercel build --prod`, `vercel deploy --prebuilt --prod`).
+- **Serverless Hosting (`vercel.json` & `api/index.ts`)**: Serves the package distribution HTTP server (`/health`, `/packages`, `/packages/:fileName`) as a Vercel Serverless Function, bundling all sealed `.taxpack.json` packages automatically.
+
+### Required GitHub Secrets
+To authorize Vercel deployments from GitHub Actions, configure the following secrets in your repository settings:
+- `VERCEL_TOKEN`: Personal or team access token created in Vercel Account Settings.
+- `VERCEL_ORG_ID`: Team or user organization ID from `.vercel/project.json` or Vercel dashboard.
+- `VERCEL_PROJECT_ID`: Project ID from `.vercel/project.json` or Vercel project settings.
+
+---
+
 ## License
 
 Apache-2.0

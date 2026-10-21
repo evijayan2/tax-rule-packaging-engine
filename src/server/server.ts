@@ -27,12 +27,23 @@ export interface IPackageServerOptions {
  * Resolves the default packages directory location.
  */
 export function getDefaultPackagesDir(): string {
+  if (process.env.PACKAGES_DIR && existsSync(process.env.PACKAGES_DIR)) {
+    return resolve(process.env.PACKAGES_DIR);
+  }
+  const cwdPackages = resolve(process.cwd(), "packages");
+  if (existsSync(cwdPackages)) {
+    return cwdPackages;
+  }
   try {
     const currentDir = fileURLToPath(new URL(".", import.meta.url));
-    return resolve(currentDir, "../../packages");
+    const relativePackages = resolve(currentDir, "../../packages");
+    if (existsSync(relativePackages)) {
+      return relativePackages;
+    }
   } catch {
-    return resolve(process.cwd(), "packages");
+    // fall through
   }
+  return cwdPackages;
 }
 
 /**
@@ -209,4 +220,7 @@ if (process.argv[1]?.endsWith("server.ts") || process.argv[1]?.endsWith("server.
   const requestedPort = process.argv[2] ? Number(process.argv[2]) : undefined;
   void startPackageServer({ port: requestedPort });
 }
+
+export default createPackageRequestHandler(getDefaultPackagesDir());
+
 

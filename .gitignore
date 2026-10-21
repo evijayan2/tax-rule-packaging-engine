@@ -9,3 +9,5 @@ coverage
 pnpm-lock.yaml
 
 
+
+.vercel

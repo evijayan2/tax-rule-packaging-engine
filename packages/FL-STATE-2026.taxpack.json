@@ -3,7 +3,7 @@
   "name": "State of Florida Statutory Tax Rules 2026",
   "version": "1.0.0",
   "jurisdictionCode": "FL",
-  "generatedAt": "2026-09-06T14:46:08.670Z",
+  "generatedAt": "2026-11-08T13:55:01.001Z",
   "jurisdictions": [
     {
       "code": "FL-STATE",
@@ -60,7 +60,7 @@
             }
           ],
           "checksum": "sha256:4f4604553be83ba324e83908b8a2ea5ce5ac78a42dd010f83ff049e695a22d6c",
-          "publishedAt": "2026-09-06T14:46:08.670Z",
+          "publishedAt": "2026-11-08T13:55:01.001Z",
           "publishedBy": "SYSTEM_GOV_SEALER"
         }
       ]
@@ -113,7 +113,7 @@
             }
           ],
           "checksum": "sha256:0dc0f7e3fe5479f5577d3e5e04d595f4dd6c19217fa84d461ce9cfbbba22a647",
-          "publishedAt": "2026-09-06T14:46:08.670Z",
+          "publishedAt": "2026-11-08T13:55:01.001Z",
           "publishedBy": "SYSTEM_GOV_SEALER"
         }
       ]

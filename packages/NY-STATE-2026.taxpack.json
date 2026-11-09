@@ -3,7 +3,7 @@
   "name": "State of New York Statutory Tax Rules 2026",
   "version": "1.0.0",
   "jurisdictionCode": "NY",
-  "generatedAt": "2026-09-06T14:46:08.668Z",
+  "generatedAt": "2026-11-08T13:55:00.999Z",
   "jurisdictions": [
     {
       "code": "NY-STATE",
@@ -117,7 +117,7 @@
             }
           ],
           "checksum": "sha256:5e3a16d59dafcb03c0d42052b5ccebe7221d31e0c327a3048badd0070fc38328",
-          "publishedAt": "2026-09-06T14:46:08.668Z",
+          "publishedAt": "2026-11-08T13:55:00.999Z",
           "publishedBy": "SYSTEM_GOV_SEALER"
         }
       ]
@@ -170,7 +170,7 @@
             }
           ],
           "checksum": "sha256:64ec2bdd9c52518f2ab257afd537f2c37e2b2ca154f55304fbf7e3259a9e5c72",
-          "publishedAt": "2026-09-06T14:46:08.668Z",
+          "publishedAt": "2026-11-08T13:55:00.999Z",
           "publishedBy": "SYSTEM_GOV_SEALER"
         }
       ]

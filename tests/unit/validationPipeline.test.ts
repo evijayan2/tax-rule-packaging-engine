@@ -2,6 +2,8 @@ import { describe, it, expect } from "vitest";
 import { runValidationPipeline } from "../../src/validation/validationPipeline.js";
 import { federalTaxPackage2026 } from "../../src/seeds/federal2026.js";
 import { pennsylvaniaTaxPackage2026 } from "../../src/seeds/pennsylvania2026.js";
+import { federalTaxPackage2027 } from "../../src/seeds/federal2027.js";
+import { pennsylvaniaTaxPackage2027 } from "../../src/seeds/pennsylvania2027.js";
 
 describe("validationPipeline", () => {
   it("validates official federal 2026 package successfully", () => {
@@ -11,8 +13,22 @@ describe("validationPipeline", () => {
     expect(report.steps.every((s) => s.passed)).toBe(true);
   });
 
+  it("validates official federal 2027 package successfully", () => {
+    const report = runValidationPipeline(federalTaxPackage2027);
+    expect(report.isValid).toBe(true);
+    expect(report.totalIssues).toBe(0);
+    expect(report.steps.every((s) => s.passed)).toBe(true);
+  });
+
   it("validates official pennsylvania 2026 package successfully", () => {
     const report = runValidationPipeline(pennsylvaniaTaxPackage2026);
+    expect(report.isValid).toBe(true);
+    expect(report.totalIssues).toBe(0);
+    expect(report.steps.every((s) => s.passed)).toBe(true);
+  });
+
+  it("validates official pennsylvania 2027 package successfully", () => {
+    const report = runValidationPipeline(pennsylvaniaTaxPackage2027);
     expect(report.isValid).toBe(true);
     expect(report.totalIssues).toBe(0);
     expect(report.steps.every((s) => s.passed)).toBe(true);

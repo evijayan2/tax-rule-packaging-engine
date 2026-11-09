@@ -1,0 +1,540 @@
+{
+  "packageCode": "US-FED-2027",
+  "name": "United States Federal Statutory Tax Rules 2027",
+  "version": "1.0.0",
+  "jurisdictionCode": "US-FED",
+  "generatedAt": "2026-11-08T13:55:00.986Z",
+  "jurisdictions": [
+    {
+      "code": "US-FED",
+      "name": "United States Federal Government",
+      "level": "FEDERAL",
+      "state": null
+    }
+  ],
+  "rules": [
+    {
+      "ruleCode": "FED_FICA_SS",
+      "name": "Social Security (OASDI) Employee Withholding",
+      "category": "WITHHOLDING",
+      "taxType": "FICA_SOCIAL_SECURITY",
+      "jurisdictionCode": "US-FED",
+      "description": "Federal Old-Age, Survivors, and Disability Insurance employee withholding rate of 6.2% up to annual wage cap of $192,300.",
+      "versions": [
+        {
+          "versionCode": "FED-FICA-SS-2027-v1",
+          "versionNumber": 1,
+          "status": "PUBLISHED",
+          "ruleType": "FLAT_RATE",
+          "ruleData": {
+            "rate": 0.062,
+            "wageCap": 192300
+          },
+          "effectiveFrom": "2027-01-01T00:00:00.000Z",
+          "effectiveTo": null,
+          "createdAt": "2026-11-06T00:00:00.000Z",
+          "createdBy": "SYSTEM_GOV_INGESTION",
+          "citations": [
+            {
+              "authority": "SSA",
+              "title": "Social Security Administration 2027 Social Security Changes Fact Sheet",
+              "statuteReference": "26 U.S. Code § 3101(a); 42 U.S. Code § 430",
+              "sourceUrl": "https://www.ssa.gov/oact/cola/cbb.html",
+              "publicationDate": "2026-10-16",
+              "citationTier": "TIER_1_OFFICIAL",
+              "excerpt": "The 2027 social security tax rate is 6.2% for the employee. The social security wage base limit is $192,300."
+            }
+          ],
+          "testCases": [
+            {
+              "id": "tc-fed-ss-2027-01",
+              "description": "Standard monthly wage below cap",
+              "inputPayload": {
+                "grossWages": 5000,
+                "priorCumulativeWages": 0
+              },
+              "expectedOutput": {
+                "taxAmount": 310,
+                "taxableWages": 5000,
+                "effectiveRate": 0.062
+              }
+            },
+            {
+              "id": "tc-fed-ss-2027-02",
+              "description": "Partial wage cap threshold reach crossing $192,300",
+              "inputPayload": {
+                "grossWages": 10000,
+                "priorCumulativeWages": 188000
+              },
+              "expectedOutput": {
+                "taxAmount": 266.6,
+                "taxableWages": 4300,
+                "effectiveRate": 0.062
+              }
+            },
+            {
+              "id": "tc-fed-ss-2027-03",
+              "description": "Prior cumulative wages strictly exceeds 2027 wage cap",
+              "inputPayload": {
+                "grossWages": 5000,
+                "priorCumulativeWages": 195000
+              },
+              "expectedOutput": {
+                "taxAmount": 0,
+                "taxableWages": 0,
+                "effectiveRate": 0.062
+              }
+            }
+          ],
+          "checksum": "sha256:437e2d8fb56f5da62dc8b45f61449ae5e1363793a2019db7047e53866b1cbca6",
+          "publishedAt": "2026-11-08T13:55:00.986Z",
+          "publishedBy": "SYSTEM_GOV_SEALER"
+        }
+      ]
+    },
+    {
+      "ruleCode": "FED_FICA_MEDICARE",
+      "name": "Medicare Hospital Insurance Employee Withholding",
+      "category": "WITHHOLDING",
+      "taxType": "FICA_MEDICARE",
+      "jurisdictionCode": "US-FED",
+      "description": "Federal Medicare Hospital Insurance employee withholding rate of 1.45% on all earnings.",
+      "versions": [
+        {
+          "versionCode": "FED-FICA-MED-2027-v1",
+          "versionNumber": 1,
+          "status": "PUBLISHED",
+          "ruleType": "FLAT_RATE",
+          "ruleData": {
+            "rate": 0.0145
+          },
+          "effectiveFrom": "2027-01-01T00:00:00.000Z",
+          "effectiveTo": null,
+          "createdAt": "2026-11-06T00:00:00.000Z",
+          "createdBy": "SYSTEM_GOV_INGESTION",
+          "citations": [
+            {
+              "authority": "IRS",
+              "title": "IRS Publication 15 (Circular E) 2027",
+              "statuteReference": "26 U.S. Code § 3101(b)",
+              "sourceUrl": "https://www.irs.gov/publications/p15",
+              "publicationDate": "2026-11-05",
+              "citationTier": "TIER_1_OFFICIAL",
+              "excerpt": "The Medicare tax rate is 1.45% each for the employee and employer, unchanged for 2027."
+            }
+          ],
+          "testCases": [
+            {
+              "id": "tc-fed-med-2027-01",
+              "description": "Standard monthly Medicare withholding",
+              "inputPayload": {
+                "grossWages": 5000
+              },
+              "expectedOutput": {
+                "taxAmount": 72.5,
+                "taxableWages": 5000,
+                "effectiveRate": 0.0145
+              }
+            },
+            {
+              "id": "tc-fed-med-2027-02",
+              "description": "Higher wage Medicare withholding",
+              "inputPayload": {
+                "grossWages": 10000
+              },
+              "expectedOutput": {
+                "taxAmount": 145,
+                "taxableWages": 10000,
+                "effectiveRate": 0.0145
+              }
+            }
+          ],
+          "checksum": "sha256:b45eb121389dbb9786716749cf3745b93db024ecd270b5f6df81858e178a4071",
+          "publishedAt": "2026-11-08T13:55:00.986Z",
+          "publishedBy": "SYSTEM_GOV_SEALER"
+        }
+      ]
+    },
+    {
+      "ruleCode": "FED_FIT_WITHHOLDING",
+      "name": "Federal Income Tax Withholding Brackets",
+      "category": "WITHHOLDING",
+      "taxType": "FEDERAL_INCOME_TAX",
+      "jurisdictionCode": "US-FED",
+      "description": "Percentage method income tax withholding tables (IRS Rev. Proc. 2026-35 and Pub 15-T).",
+      "versions": [
+        {
+          "versionCode": "FED-FIT-2027-v1",
+          "versionNumber": 1,
+          "status": "PUBLISHED",
+          "ruleType": "BRACKET_PERCENTAGE",
+          "ruleData": {
+            "standardAllowances": {
+              "SINGLE": 16600,
+              "MARRIED_FILING_JOINTLY": 33200,
+              "HEAD_OF_HOUSEHOLD": 24925,
+              "MARRIED_FILING_SEPARATELY": 16600
+            },
+            "brackets": {
+              "MARRIED_FILING_JOINTLY": [
+                {
+                  "incomeFrom": 0,
+                  "incomeTo": 25600,
+                  "over": 0,
+                  "max": 25600,
+                  "marginalRate": 0.1,
+                  "rate": 0.1,
+                  "baseTax": 0
+                },
+                {
+                  "incomeFrom": 25600,
+                  "incomeTo": 104050,
+                  "over": 25600,
+                  "max": 104050,
+                  "marginalRate": 0.12,
+                  "rate": 0.12,
+                  "baseTax": 2560
+                },
+                {
+                  "incomeFrom": 104050,
+                  "incomeTo": 218250,
+                  "over": 104050,
+                  "max": 218250,
+                  "marginalRate": 0.22,
+                  "rate": 0.22,
+                  "baseTax": 11974
+                },
+                {
+                  "incomeFrom": 218250,
+                  "incomeTo": 416650,
+                  "over": 218250,
+                  "max": 416650,
+                  "marginalRate": 0.24,
+                  "rate": 0.24,
+                  "baseTax": 37098
+                },
+                {
+                  "incomeFrom": 416650,
+                  "incomeTo": 529100,
+                  "over": 416650,
+                  "max": 529100,
+                  "marginalRate": 0.32,
+                  "rate": 0.32,
+                  "baseTax": 84714
+                },
+                {
+                  "incomeFrom": 529100,
+                  "incomeTo": 793650,
+                  "over": 529100,
+                  "max": 793650,
+                  "marginalRate": 0.35,
+                  "rate": 0.35,
+                  "baseTax": 120698
+                },
+                {
+                  "incomeFrom": 793650,
+                  "incomeTo": null,
+                  "over": 793650,
+                  "max": null,
+                  "marginalRate": 0.37,
+                  "rate": 0.37,
+                  "baseTax": 213290.5
+                }
+              ],
+              "SINGLE": [
+                {
+                  "incomeFrom": 0,
+                  "incomeTo": 12800,
+                  "over": 0,
+                  "max": 12800,
+                  "marginalRate": 0.1,
+                  "rate": 0.1,
+                  "baseTax": 0
+                },
+                {
+                  "incomeFrom": 12800,
+                  "incomeTo": 52025,
+                  "over": 12800,
+                  "max": 52025,
+                  "marginalRate": 0.12,
+                  "rate": 0.12,
+                  "baseTax": 1280
+                },
+                {
+                  "incomeFrom": 52025,
+                  "incomeTo": 109125,
+                  "over": 52025,
+                  "max": 109125,
+                  "marginalRate": 0.22,
+                  "rate": 0.22,
+                  "baseTax": 5987
+                },
+                {
+                  "incomeFrom": 109125,
+                  "incomeTo": 208325,
+                  "over": 109125,
+                  "max": 208325,
+                  "marginalRate": 0.24,
+                  "rate": 0.24,
+                  "baseTax": 18549
+                },
+                {
+                  "incomeFrom": 208325,
+                  "incomeTo": 264550,
+                  "over": 208325,
+                  "max": 264550,
+                  "marginalRate": 0.32,
+                  "rate": 0.32,
+                  "baseTax": 42357
+                },
+                {
+                  "incomeFrom": 264550,
+                  "incomeTo": 661375,
+                  "over": 264550,
+                  "max": 661375,
+                  "marginalRate": 0.35,
+                  "rate": 0.35,
+                  "baseTax": 60349
+                },
+                {
+                  "incomeFrom": 661375,
+                  "incomeTo": null,
+                  "over": 661375,
+                  "max": null,
+                  "marginalRate": 0.37,
+                  "rate": 0.37,
+                  "baseTax": 199237.75
+                }
+              ],
+              "HEAD_OF_HOUSEHOLD": [
+                {
+                  "incomeFrom": 0,
+                  "incomeTo": 18250,
+                  "over": 0,
+                  "max": 18250,
+                  "marginalRate": 0.1,
+                  "rate": 0.1,
+                  "baseTax": 0
+                },
+                {
+                  "incomeFrom": 18250,
+                  "incomeTo": 69650,
+                  "over": 18250,
+                  "max": 69650,
+                  "marginalRate": 0.12,
+                  "rate": 0.12,
+                  "baseTax": 1825
+                },
+                {
+                  "incomeFrom": 69650,
+                  "incomeTo": 109100,
+                  "over": 69650,
+                  "max": 109100,
+                  "marginalRate": 0.22,
+                  "rate": 0.22,
+                  "baseTax": 7993
+                },
+                {
+                  "incomeFrom": 109100,
+                  "incomeTo": 208300,
+                  "over": 109100,
+                  "max": 208300,
+                  "marginalRate": 0.24,
+                  "rate": 0.24,
+                  "baseTax": 16672
+                },
+                {
+                  "incomeFrom": 208300,
+                  "incomeTo": 264550,
+                  "over": 208300,
+                  "max": 264550,
+                  "marginalRate": 0.32,
+                  "rate": 0.32,
+                  "baseTax": 40480
+                },
+                {
+                  "incomeFrom": 264550,
+                  "incomeTo": 661350,
+                  "over": 264550,
+                  "max": 661350,
+                  "marginalRate": 0.35,
+                  "rate": 0.35,
+                  "baseTax": 58480
+                },
+                {
+                  "incomeFrom": 661350,
+                  "incomeTo": null,
+                  "over": 661350,
+                  "max": null,
+                  "marginalRate": 0.37,
+                  "rate": 0.37,
+                  "baseTax": 197360
+                }
+              ]
+            }
+          },
+          "effectiveFrom": "2027-01-01T00:00:00.000Z",
+          "effectiveTo": null,
+          "createdAt": "2026-11-06T00:00:00.000Z",
+          "createdBy": "SYSTEM_GOV_INGESTION",
+          "citations": [
+            {
+              "authority": "IRS",
+              "title": "IRS Revenue Procedure 2026-35 (2027 Inflation Adjustments) & IR-2026-133",
+              "statuteReference": "26 U.S. Code § 1(j)(2), § 63(c)(2), § 3402",
+              "sourceUrl": "https://www.irs.gov/newsroom/irs-releases-tax-inflation-adjustments-for-tax-year-2027-taxpayers-continue-to-benefit-from-the-working-families-tax-cuts",
+              "publicationDate": "2026-11-05",
+              "citationTier": "TIER_1_OFFICIAL",
+              "excerpt": "Tax rate tables and standard deduction amounts for taxable years beginning in 2027."
+            }
+          ],
+          "testCases": [
+            {
+              "id": "tc-fed-fit-2027-01",
+              "description": "Single filer first bracket withholding ($5,000 taxable wages)",
+              "inputPayload": {
+                "grossWages": 5000,
+                "filingStatus": "SINGLE"
+              },
+              "expectedOutput": {
+                "taxAmount": 500,
+                "taxableWages": 5000
+              }
+            },
+            {
+              "id": "tc-fed-fit-2027-02",
+              "description": "Single filer second bracket withholding ($20,000 taxable wages)",
+              "inputPayload": {
+                "grossWages": 20000,
+                "filingStatus": "SINGLE"
+              },
+              "expectedOutput": {
+                "taxAmount": 2144,
+                "taxableWages": 20000
+              }
+            }
+          ],
+          "checksum": "sha256:62dae03c3f42cf68cf9032791db31cf461bb0e33a37339a5fb6731fc335dfa29",
+          "publishedAt": "2026-11-08T13:55:00.986Z",
+          "publishedBy": "SYSTEM_GOV_SEALER"
+        }
+      ]
+    },
+    {
+      "ruleCode": "IRS_MILEAGE",
+      "name": "IRS Standard Business Mileage Rate",
+      "category": "MILEAGE",
+      "taxType": "MILEAGE_REIMBURSEMENT",
+      "jurisdictionCode": "US-FED",
+      "description": "IRS standard mileage rate for business use of a vehicle (76 cents per mile baseline, subject to mid-Dec Notice 2027-XX).",
+      "versions": [
+        {
+          "versionCode": "IRS-MILEAGE-2027-v1",
+          "versionNumber": 1,
+          "status": "PUBLISHED",
+          "ruleType": "PER_MILE_RATE",
+          "ruleData": {
+            "rate": 0.76,
+            "ratePerMile": 0.76
+          },
+          "effectiveFrom": "2027-01-01T00:00:00.000Z",
+          "effectiveTo": null,
+          "createdAt": "2026-11-06T00:00:00.000Z",
+          "createdBy": "SYSTEM_GOV_INGESTION",
+          "citations": [
+            {
+              "authority": "IRS",
+              "title": "IRS Notice 2026-11 & Notice 2027-XX Standard Mileage Rates",
+              "statuteReference": "Rev. Proc. 2019-46; IRS Notice 2026-11",
+              "sourceUrl": "https://www.irs.gov/tax-professionals/standard-mileage-rates",
+              "publicationDate": "2026-06-25",
+              "citationTier": "TIER_1_OFFICIAL",
+              "excerpt": "The standard mileage rate for business use of an automobile is 76 cents per mile."
+            }
+          ],
+          "testCases": [
+            {
+              "id": "tc-fed-mileage-2027-01",
+              "description": "100 business miles calculation at 76 cents/mile",
+              "inputPayload": {
+                "miles": 100
+              },
+              "expectedOutput": {
+                "reimbursementAmount": 76,
+                "miles": 100,
+                "ratePerMile": 0.76
+              }
+            }
+          ],
+          "checksum": "sha256:3f6661b3bc7e29a8bff525f3179fa2ff762601a43ad66a4e2adc9a6da86dc00e",
+          "publishedAt": "2026-11-08T13:55:00.986Z",
+          "publishedBy": "SYSTEM_GOV_SEALER"
+        }
+      ]
+    },
+    {
+      "ruleCode": "FED_1099_NEC_THRESHOLD",
+      "name": "IRS Form 1099-NEC Nonemployee Compensation Reporting Threshold",
+      "category": "COMPLIANCE_REPORTING",
+      "taxType": "INFORMATION_RETURN_1099",
+      "jurisdictionCode": "US-FED",
+      "description": "Statutory threshold for required Form 1099-NEC nonemployee compensation reporting ($2,100.00 under Rev. Proc. 2026-35 § 3.52).",
+      "versions": [
+        {
+          "versionCode": "FED-1099-NEC-THRESHOLD-2027-v1",
+          "versionNumber": 1,
+          "status": "PUBLISHED",
+          "ruleType": "THRESHOLD",
+          "ruleData": {
+            "threshold": 2100
+          },
+          "effectiveFrom": "2027-01-01T00:00:00.000Z",
+          "effectiveTo": null,
+          "createdAt": "2026-11-06T00:00:00.000Z",
+          "createdBy": "SYSTEM_GOV_INGESTION",
+          "citations": [
+            {
+              "authority": "IRS",
+              "title": "IRS Revenue Procedure 2026-35 § 3.52 (Payment Reporting Threshold)",
+              "statuteReference": "26 U.S. Code § 6041(a); Rev. Proc. 2026-35 § 3.52",
+              "sourceUrl": "https://www.irs.gov/newsroom/irs-releases-tax-inflation-adjustments-for-tax-year-2027-taxpayers-continue-to-benefit-from-the-working-families-tax-cuts",
+              "publicationDate": "2026-11-05",
+              "citationTier": "TIER_1_OFFICIAL",
+              "excerpt": "For payments made in calendar year 2027, the reporting threshold for payments described in § 6041(a) is $2,100."
+            }
+          ],
+          "testCases": [
+            {
+              "id": "tc-fed-1099-2027-01",
+              "description": "Compensation exactly equals 2027 $2,100 statutory threshold",
+              "inputPayload": {
+                "amount": 2100
+              },
+              "expectedOutput": {
+                "thresholdMet": true,
+                "amount": 2100,
+                "threshold": 2100
+              }
+            },
+            {
+              "id": "tc-fed-1099-2027-02",
+              "description": "Compensation strictly below 2027 statutory threshold",
+              "inputPayload": {
+                "amount": 2099.99
+              },
+              "expectedOutput": {
+                "thresholdMet": false,
+                "amount": 2099.99,
+                "threshold": 2100
+              }
+            }
+          ],
+          "checksum": "sha256:93e1382a79418382bd3510538ddb86be94c0d457d9dde2d922021210bc2de2cd",
+          "publishedAt": "2026-11-08T13:55:00.986Z",
+          "publishedBy": "SYSTEM_GOV_SEALER"
+        }
+      ]
+    }
+  ],
+  "manifestChecksum": "sha256:622af2d6aa34606e4cdd350ad40cbfa866c58cfe251be0cc5fdcbad6c6f92090"
+}

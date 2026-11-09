@@ -3,7 +3,7 @@
   "name": "State of Delaware Statutory Tax Rules 2026",
   "version": "1.0.0",
   "jurisdictionCode": "DE-STATE",
-  "generatedAt": "2026-09-06T14:46:08.667Z",
+  "generatedAt": "2026-11-08T13:55:00.997Z",
   "jurisdictions": [
     {
       "code": "DE-STATE",
@@ -148,7 +148,7 @@
             }
           ],
           "checksum": "sha256:f1c340619094a36f64d40fcd751d7e45bf4d7805ec11ba53812dd6065d9f5460",
-          "publishedAt": "2026-09-06T14:46:08.667Z",
+          "publishedAt": "2026-11-08T13:55:00.997Z",
           "publishedBy": "SYSTEM_GOV_SEALER"
         }
       ]
@@ -214,7 +214,7 @@
             }
           ],
           "checksum": "sha256:5575d744caeb61b156c9972ac67460dc1f7c3afd1d02c9ab1ce65fba9539d11e",
-          "publishedAt": "2026-09-06T14:46:08.667Z",
+          "publishedAt": "2026-11-08T13:55:00.997Z",
           "publishedBy": "SYSTEM_GOV_SEALER"
         }
       ]
@@ -265,7 +265,7 @@
             }
           ],
           "checksum": "sha256:6dfd11ae0e97bbbd57470528c9f020d7baa23db659458d955ffb8faf0ee07e60",
-          "publishedAt": "2026-09-06T14:46:08.667Z",
+          "publishedAt": "2026-11-08T13:55:00.997Z",
           "publishedBy": "SYSTEM_GOV_SEALER"
         }
       ]

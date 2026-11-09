@@ -3,7 +3,7 @@
   "name": "United States Federal Statutory Tax Rules 2026",
   "version": "1.0.0",
   "jurisdictionCode": "US-FED",
-  "generatedAt": "2026-10-17T23:27:44.489Z",
+  "generatedAt": "2026-11-08T13:55:00.983Z",
   "jurisdictions": [
     {
       "code": "US-FED",
@@ -87,7 +87,7 @@
             }
           ],
           "checksum": "sha256:ecccb0fd1372851dab48faa1490ce8a805c843256c71398930c4cd3f2d380e3c",
-          "publishedAt": "2026-10-17T23:27:44.489Z",
+          "publishedAt": "2026-11-08T13:55:00.983Z",
           "publishedBy": "SYSTEM_GOV_SEALER"
         }
       ]
@@ -150,7 +150,7 @@
             }
           ],
           "checksum": "sha256:8ef2c325943947f01f84402936b1ba013385e88b1f9df04842fbd80f432792c1",
-          "publishedAt": "2026-10-17T23:27:44.489Z",
+          "publishedAt": "2026-11-08T13:55:00.983Z",
           "publishedBy": "SYSTEM_GOV_SEALER"
         }
       ]
@@ -301,7 +301,7 @@
             }
           ],
           "checksum": "sha256:789bd9ca2fb37a09747adc93fec0bbb6b5c71d12954b114ca0903861cd5e2031",
-          "publishedAt": "2026-10-17T23:27:44.489Z",
+          "publishedAt": "2026-11-08T13:55:00.983Z",
           "publishedBy": "SYSTEM_GOV_SEALER"
         }
       ]
@@ -353,7 +353,7 @@
             }
           ],
           "checksum": "sha256:41603369fef2359a18542571fa9bead8837f7ec4e11e9e3d0a5470204864f42d",
-          "publishedAt": "2026-10-17T23:27:44.489Z",
+          "publishedAt": "2026-11-08T13:55:00.983Z",
           "publishedBy": "SYSTEM_GOV_SEALER"
         }
       ]
@@ -416,7 +416,7 @@
             }
           ],
           "checksum": "sha256:a3b39ebf4a38c7b7df10ee82fd47a5a08d4f9ddca89204c6cc1601ae930fba5d",
-          "publishedAt": "2026-10-17T23:27:44.489Z",
+          "publishedAt": "2026-11-08T13:55:00.983Z",
           "publishedBy": "SYSTEM_GOV_SEALER"
         }
       ]

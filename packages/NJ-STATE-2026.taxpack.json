@@ -3,7 +3,7 @@
   "name": "State of New Jersey Statutory Tax Rules 2026",
   "version": "1.0.0",
   "jurisdictionCode": "NJ",
-  "generatedAt": "2026-09-06T14:46:08.668Z",
+  "generatedAt": "2026-11-08T13:55:00.998Z",
   "jurisdictions": [
     {
       "code": "NJ-STATE",
@@ -117,7 +117,7 @@
             }
           ],
           "checksum": "sha256:3bd714ffcf5698b7bb1dc60242156b3b73880b5dad0b0bd60e9592257a983489",
-          "publishedAt": "2026-09-06T14:46:08.668Z",
+          "publishedAt": "2026-11-08T13:55:00.998Z",
           "publishedBy": "SYSTEM_GOV_SEALER"
         }
       ]
@@ -170,7 +170,7 @@
             }
           ],
           "checksum": "sha256:fb28a504d85341a807b1492deaf79720986ca24b1e65fea0100a884526a02595",
-          "publishedAt": "2026-09-06T14:46:08.668Z",
+          "publishedAt": "2026-11-08T13:55:00.998Z",
           "publishedBy": "SYSTEM_GOV_SEALER"
         }
       ]

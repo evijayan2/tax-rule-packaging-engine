@@ -3,7 +3,7 @@
   "name": "State of Ohio Statutory Tax Rules 2026",
   "version": "1.0.0",
   "jurisdictionCode": "OH",
-  "generatedAt": "2026-09-06T14:46:08.669Z",
+  "generatedAt": "2026-11-08T13:55:01.000Z",
   "jurisdictions": [
     {
       "code": "OH-STATE",
@@ -85,7 +85,7 @@
             }
           ],
           "checksum": "sha256:b16bb75ff5ad0be92b0a594440f4897cf2cdb082fefd4218eb2a29ad5e445c86",
-          "publishedAt": "2026-09-06T14:46:08.669Z",
+          "publishedAt": "2026-11-08T13:55:01.000Z",
           "publishedBy": "SYSTEM_GOV_SEALER"
         }
       ]
@@ -138,7 +138,7 @@
             }
           ],
           "checksum": "sha256:ca011fdc591066e52da59152d6348dbc921290947b319f1c42a06b0de3bf594d",
-          "publishedAt": "2026-09-06T14:46:08.669Z",
+          "publishedAt": "2026-11-08T13:55:01.000Z",
           "publishedBy": "SYSTEM_GOV_SEALER"
         }
       ]

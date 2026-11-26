@@ -27,14 +27,14 @@ describe("regressionRunner", () => {
     const report = runPackageRegressionTests(pennsylvaniaTaxPackage2026);
     expect(report.passed).toBe(true);
     expect(report.failCount).toBe(0);
-    expect(report.passCount).toBe(3);
+    expect(report.passCount).toBe(4);
   });
 
   it("passes 100% of pennsylvania 2027 bundled regression tests", () => {
     const report = runPackageRegressionTests(pennsylvaniaTaxPackage2027);
     expect(report.passed).toBe(true);
     expect(report.failCount).toBe(0);
-    expect(report.passCount).toBe(3);
+    expect(report.passCount).toBe(4);
   });
 
   it("detects failing regression test case", () => {

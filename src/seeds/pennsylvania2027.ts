@@ -146,6 +146,48 @@ export const pennsylvaniaTaxPackage2027: ITaxRulePackage = {
           ]
         }
       ]
+    },
+    {
+      ruleCode: "PA_UC_EMPLOYEE",
+      name: "Pennsylvania UC Employee Withholding Rate",
+      category: "WITHHOLDING",
+      taxType: "STATE_UNEMPLOYMENT_TAX",
+      jurisdictionCode: "PA-STATE",
+      description: "Pennsylvania Unemployment Compensation employee withholding tax (0.07% on all gross wages, no cap).",
+      versions: [
+        {
+          versionCode: "PA-UC-EE-2027-v1",
+          versionNumber: 1,
+          status: "DRAFT",
+          ruleType: "FLAT_RATE",
+          ruleData: {
+            rate: 0.0007
+          },
+          effectiveFrom: "2027-01-01T00:00:00.000Z",
+          effectiveTo: null,
+          createdAt: "2026-11-06T00:00:00.000Z",
+          createdBy: "SYSTEM_GOV_INGESTION",
+          citations: [
+            {
+              authority: "PA Dept of Labor & Industry",
+              title: "PA UC Employee Withholding Rate 2027",
+              statuteReference: "43 P.S. § 781.4",
+              sourceUrl: "https://www.uc.pa.gov",
+              publicationDate: "2026-11-01",
+              citationTier: "TIER_1_OFFICIAL",
+              excerpt: "Pennsylvania Unemployment Compensation employee withholding rate of 0.07% (0.0007) applies to all covered wages with no annual wage cap."
+            }
+          ],
+          testCases: [
+            {
+              id: "tc-pa-uc-ee-2027-01",
+              description: "PA UC employee withholding on $1,000 gross wages",
+              inputPayload: { grossWages: 1000 },
+              expectedOutput: { taxAmount: 0.7, taxableWages: 1000, effectiveRate: 0.0007 }
+            }
+          ]
+        }
+      ]
     }
   ]
 };

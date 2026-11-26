@@ -1,7 +1,9 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { federalTaxPackage2026 } from "../seeds/federal2026.js";
+import { federalTaxPackage2027 } from "../seeds/federal2027.js";
 import { pennsylvaniaTaxPackage2026 } from "../seeds/pennsylvania2026.js";
+import { pennsylvaniaTaxPackage2027 } from "../seeds/pennsylvania2027.js";
 import { texasTaxPackage2026 } from "../seeds/texas2026.js";
 import { delawareTaxPackage2026 } from "../seeds/delaware2026.js";
 import { pennsylvaniaLocalTaxPackage2026 } from "../seeds/paLocal2026.js";
@@ -13,7 +15,7 @@ import { buildTaxRulePackage } from "../packaging/packageBuilder.js";
 import { logger } from "../logger/logger.js";
 
 /**
- * Builds and outputs sealed reference seed packages for Federal, PA, TX, DE, NJ, NY, OH, and FL 2026.
+ * Builds and outputs sealed reference seed packages for Federal, PA, TX, DE, NJ, NY, OH, and FL 2026/2027.
  */
 export function generateSeedPackages(): void {
   const outputDir = join(process.cwd(), "packages");
@@ -23,7 +25,9 @@ export function generateSeedPackages(): void {
 
   const packagesToBuild = [
     { name: "US-FED-2026.taxpack.json", pkg: federalTaxPackage2026, label: "Federal 2026" },
+    { name: "US-FED-2027.taxpack.json", pkg: federalTaxPackage2027, label: "Federal 2027" },
     { name: "PA-STATE-2026.taxpack.json", pkg: pennsylvaniaTaxPackage2026, label: "Pennsylvania 2026" },
+    { name: "PA-STATE-2027.taxpack.json", pkg: pennsylvaniaTaxPackage2027, label: "Pennsylvania 2027" },
     { name: "PA-LOCAL-2026.taxpack.json", pkg: pennsylvaniaLocalTaxPackage2026, label: "Pennsylvania Local 2026" },
     { name: "TX-STATE-2026.taxpack.json", pkg: texasTaxPackage2026, label: "Texas 2026" },
     { name: "DE-STATE-2026.taxpack.json", pkg: delawareTaxPackage2026, label: "Delaware 2026" },

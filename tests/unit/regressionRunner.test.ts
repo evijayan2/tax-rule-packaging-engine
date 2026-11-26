@@ -2,6 +2,8 @@ import { describe, it, expect } from "vitest";
 import { runPackageRegressionTests, runVersionRegressionTests } from "../../src/testing/regressionRunner.js";
 import { federalTaxPackage2026 } from "../../src/seeds/federal2026.js";
 import { pennsylvaniaTaxPackage2026 } from "../../src/seeds/pennsylvania2026.js";
+import { federalTaxPackage2027 } from "../../src/seeds/federal2027.js";
+import { pennsylvaniaTaxPackage2027 } from "../../src/seeds/pennsylvania2027.js";
 import type { ITaxRuleVersion } from "../../src/domain/types.js";
 
 describe("regressionRunner", () => {
@@ -9,15 +11,30 @@ describe("regressionRunner", () => {
     const report = runPackageRegressionTests(federalTaxPackage2026);
     expect(report.passed).toBe(true);
     expect(report.failCount).toBe(0);
-    expect(report.passCount).toBe(9); // 3 SS + 2 Med + 1 FIT + 1 Mileage + 2 1099 Threshold
-    expect(report.totalTests).toBe(9);
+    expect(report.passCount).toBe(12); // 3 SS + 2 Med + 1 FIT + 1 Mileage + 2 1099 Threshold + 3 FUTA
+    expect(report.totalTests).toBe(12);
+  });
+
+  it("passes 100% of federal 2027 bundled regression tests", () => {
+    const report = runPackageRegressionTests(federalTaxPackage2027);
+    expect(report.passed).toBe(true);
+    expect(report.failCount).toBe(0);
+    expect(report.passCount).toBe(12);
+    expect(report.totalTests).toBe(12);
   });
 
   it("passes 100% of pennsylvania 2026 bundled regression tests", () => {
     const report = runPackageRegressionTests(pennsylvaniaTaxPackage2026);
     expect(report.passed).toBe(true);
     expect(report.failCount).toBe(0);
-    expect(report.passCount).toBe(3);
+    expect(report.passCount).toBe(4);
+  });
+
+  it("passes 100% of pennsylvania 2027 bundled regression tests", () => {
+    const report = runPackageRegressionTests(pennsylvaniaTaxPackage2027);
+    expect(report.passed).toBe(true);
+    expect(report.failCount).toBe(0);
+    expect(report.passCount).toBe(4);
   });
 
   it("detects failing regression test case", () => {

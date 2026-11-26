@@ -274,6 +274,61 @@ export const federalTaxPackage2026: ITaxRulePackage = {
           ]
         }
       ]
+    },
+    {
+      ruleCode: "FED_FUTA",
+      name: "Federal Unemployment Tax Act (FUTA) Employer Tax",
+      category: "EMPLOYER_TAX",
+      taxType: "FEDERAL_UNEMPLOYMENT_TAX",
+      jurisdictionCode: "US-FED",
+      description: "Federal Unemployment Tax Act (FUTA) net employer rate of 0.6% (6.0% minus 5.4% SUTA credit) on the first $7,000 of wages per employee.",
+      versions: [
+        {
+          versionCode: "FED-FUTA-2026-v1",
+          versionNumber: 1,
+          status: "DRAFT",
+          ruleType: "FLAT_RATE",
+          ruleData: {
+            rate: 0.006,
+            wageCap: 7000
+          },
+          effectiveFrom: "2026-01-01T00:00:00.000Z",
+          effectiveTo: null,
+          createdAt: "2026-01-01T00:00:00.000Z",
+          createdBy: "SYSTEM_GOV_INGESTION",
+          citations: [
+            {
+              authority: "IRS",
+              title: "IRS Publication 15 (Circular E) & Form 940 Instructions (2026)",
+              statuteReference: "26 U.S. Code §§ 3301, 3302, 3306(b)(1)",
+              sourceUrl: "https://www.irs.gov/instructions/i940",
+              publicationDate: "2025-12-15",
+              citationTier: "TIER_1_OFFICIAL",
+              excerpt: "The FUTA tax rate is 6.0%. The tax applies to the first $7,000 you pay to each employee as wages during the year. Employers who pay state unemployment tax on time receive a credit of up to 5.4%, resulting in a net FUTA rate of 0.6%."
+            }
+          ],
+          testCases: [
+            {
+              id: "tc-fed-futa-01",
+              description: "Standard wage below $7,000 FUTA wage cap",
+              inputPayload: { grossWages: 2000, priorCumulativeWages: 0 },
+              expectedOutput: { taxAmount: 12.0, taxableWages: 2000, effectiveRate: 0.006 }
+            },
+            {
+              id: "tc-fed-futa-02",
+              description: "Partial wage cap threshold reach crossing $7,000",
+              inputPayload: { grossWages: 3000, priorCumulativeWages: 5500 },
+              expectedOutput: { taxAmount: 9.0, taxableWages: 1500, effectiveRate: 0.006 }
+            },
+            {
+              id: "tc-fed-futa-03",
+              description: "Prior cumulative wages strictly exceeds $7,000 cap",
+              inputPayload: { grossWages: 2000, priorCumulativeWages: 7500 },
+              expectedOutput: { taxAmount: 0.0, taxableWages: 0, effectiveRate: 0.006 }
+            }
+          ]
+        }
+      ]
     }
   ]
 };

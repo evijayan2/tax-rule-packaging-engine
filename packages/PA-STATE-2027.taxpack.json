@@ -3,7 +3,7 @@
   "name": "Commonwealth of Pennsylvania Statutory Tax Rules 2027",
   "version": "1.0.0",
   "jurisdictionCode": "PA-STATE",
-  "generatedAt": "2026-11-26T14:35:48.577Z",
+  "generatedAt": "2026-11-26T17:05:03.166Z",
   "jurisdictions": [
     {
       "code": "PA-STATE",
@@ -60,7 +60,7 @@
             }
           ],
           "checksum": "sha256:0d317517153232876c937607ff795ff616ef382700940b0ec490057019f9711e",
-          "publishedAt": "2026-11-26T14:35:48.577Z",
+          "publishedAt": "2026-11-26T17:05:03.166Z",
           "publishedBy": "SYSTEM_GOV_SEALER"
         }
       ]
@@ -111,7 +111,7 @@
             }
           ],
           "checksum": "sha256:ef4fbbcde9d81aa9808cc596613dd5ddd315b3cfb3e5918b3127a918724c347e",
-          "publishedAt": "2026-11-26T14:35:48.577Z",
+          "publishedAt": "2026-11-26T17:05:03.166Z",
           "publishedBy": "SYSTEM_GOV_SEALER"
         }
       ]
@@ -164,7 +164,7 @@
             }
           ],
           "checksum": "sha256:bee151690d46bf5d493c6af683f975f9cadb2f33585e97e03f63c3f6f36a34a5",
-          "publishedAt": "2026-11-26T14:35:48.577Z",
+          "publishedAt": "2026-11-26T17:05:03.166Z",
           "publishedBy": "SYSTEM_GOV_SEALER"
         }
       ]
@@ -215,7 +215,7 @@
             }
           ],
           "checksum": "sha256:b485423593eba83767ad2e9734b73dd430b184c7e675bb39b3c656e5af96ea5e",
-          "publishedAt": "2026-11-26T14:35:48.577Z",
+          "publishedAt": "2026-11-26T17:05:03.166Z",
           "publishedBy": "SYSTEM_GOV_SEALER"
         }
       ]

@@ -3,7 +3,7 @@
   "name": "United States Federal Statutory Tax Rules 2027",
   "version": "1.0.0",
   "jurisdictionCode": "US-FED",
-  "generatedAt": "2026-11-08T13:55:00.986Z",
+  "generatedAt": "2026-11-26T17:05:03.164Z",
   "jurisdictions": [
     {
       "code": "US-FED",
@@ -87,7 +87,7 @@
             }
           ],
           "checksum": "sha256:437e2d8fb56f5da62dc8b45f61449ae5e1363793a2019db7047e53866b1cbca6",
-          "publishedAt": "2026-11-08T13:55:00.986Z",
+          "publishedAt": "2026-11-26T17:05:03.164Z",
           "publishedBy": "SYSTEM_GOV_SEALER"
         }
       ]
@@ -150,7 +150,7 @@
             }
           ],
           "checksum": "sha256:b45eb121389dbb9786716749cf3745b93db024ecd270b5f6df81858e178a4071",
-          "publishedAt": "2026-11-08T13:55:00.986Z",
+          "publishedAt": "2026-11-26T17:05:03.164Z",
           "publishedBy": "SYSTEM_GOV_SEALER"
         }
       ]
@@ -415,7 +415,7 @@
             }
           ],
           "checksum": "sha256:62dae03c3f42cf68cf9032791db31cf461bb0e33a37339a5fb6731fc335dfa29",
-          "publishedAt": "2026-11-08T13:55:00.986Z",
+          "publishedAt": "2026-11-26T17:05:03.164Z",
           "publishedBy": "SYSTEM_GOV_SEALER"
         }
       ]
@@ -467,7 +467,7 @@
             }
           ],
           "checksum": "sha256:3f6661b3bc7e29a8bff525f3179fa2ff762601a43ad66a4e2adc9a6da86dc00e",
-          "publishedAt": "2026-11-08T13:55:00.986Z",
+          "publishedAt": "2026-11-26T17:05:03.164Z",
           "publishedBy": "SYSTEM_GOV_SEALER"
         }
       ]
@@ -530,11 +530,77 @@
             }
           ],
           "checksum": "sha256:93e1382a79418382bd3510538ddb86be94c0d457d9dde2d922021210bc2de2cd",
-          "publishedAt": "2026-11-08T13:55:00.986Z",
+          "publishedAt": "2026-11-26T17:05:03.164Z",
+          "publishedBy": "SYSTEM_GOV_SEALER"
+        }
+      ]
+    },
+    {
+      "ruleCode": "FED_FUTA",
+      "name": "Federal Unemployment Tax Act (FUTA) Employer Tax",
+      "category": "EMPLOYER_TAX",
+      "taxType": "FEDERAL_UNEMPLOYMENT_TAX",
+      "jurisdictionCode": "US-FED",
+      "description": "Federal Unemployment Tax Act (FUTA) net employer rate of 0.6% (6.0% minus 5.4% SUTA credit) on the first $7,000 of wages per employee.",
+      "versions": [
+        {
+          "versionCode": "FED-FUTA-2027-v1",
+          "versionNumber": 1,
+          "status": "PUBLISHED",
+          "ruleType": "FLAT_RATE",
+          "ruleData": {
+            "rate": 0.006,
+            "wageCap": 7000
+          },
+          "effectiveFrom": "2027-01-01T00:00:00.000Z",
+          "effectiveTo": null,
+          "createdAt": "2026-11-06T00:00:00.000Z",
+          "createdBy": "SYSTEM_GOV_INGESTION",
+          "citations": [
+            {
+              "authority": "IRS",
+              "title": "IRS Publication 15 (Circular E) & Form 940 Instructions (2027)",
+              "statuteReference": "26 U.S. Code §§ 3301, 3302, 3306(b)(1)",
+              "sourceUrl": "https://www.irs.gov/instructions/i940",
+              "publicationDate": "2026-11-05",
+              "citationTier": "TIER_1_OFFICIAL",
+              "excerpt": "The FUTA tax rate is 6.0% on the first $7,000 of wages per employee, with a maximum 5.4% state credit yielding a 0.6% net FUTA rate."
+            }
+          ],
+          "testCases": [
+            {
+              "id": "tc-fed-futa-2027-01",
+              "description": "Standard wage below $7,000 FUTA wage cap",
+              "inputPayload": {
+                "grossWages": 2000,
+                "priorCumulativeWages": 0
+              },
+              "expectedOutput": {
+                "taxAmount": 12,
+                "taxableWages": 2000,
+                "effectiveRate": 0.006
+              }
+            },
+            {
+              "id": "tc-fed-futa-2027-02",
+              "description": "Partial wage cap threshold reach crossing $7,000",
+              "inputPayload": {
+                "grossWages": 3000,
+                "priorCumulativeWages": 5500
+              },
+              "expectedOutput": {
+                "taxAmount": 9,
+                "taxableWages": 1500,
+                "effectiveRate": 0.006
+              }
+            }
+          ],
+          "checksum": "sha256:2cbd3c3e2ef204f6ff8a1b81a82f88ca57898e6d457a5dbc389807eed5d32150",
+          "publishedAt": "2026-11-26T17:05:03.164Z",
           "publishedBy": "SYSTEM_GOV_SEALER"
         }
       ]
     }
   ],
-  "manifestChecksum": "sha256:622af2d6aa34606e4cdd350ad40cbfa866c58cfe251be0cc5fdcbad6c6f92090"
+  "manifestChecksum": "sha256:d1962236ffc9b492e0de5a64e1f8851a6294a77ec4a292354ddc61a9296feeb3"
 }

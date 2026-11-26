@@ -296,6 +296,55 @@ export const federalTaxPackage2027: ITaxRulePackage = {
           ]
         }
       ]
+    },
+    {
+      ruleCode: "FED_FUTA",
+      name: "Federal Unemployment Tax Act (FUTA) Employer Tax",
+      category: "EMPLOYER_TAX",
+      taxType: "FEDERAL_UNEMPLOYMENT_TAX",
+      jurisdictionCode: "US-FED",
+      description: "Federal Unemployment Tax Act (FUTA) net employer rate of 0.6% (6.0% minus 5.4% SUTA credit) on the first $7,000 of wages per employee.",
+      versions: [
+        {
+          versionCode: "FED-FUTA-2027-v1",
+          versionNumber: 1,
+          status: "DRAFT",
+          ruleType: "FLAT_RATE",
+          ruleData: {
+            rate: 0.006,
+            wageCap: 7000
+          },
+          effectiveFrom: "2027-01-01T00:00:00.000Z",
+          effectiveTo: null,
+          createdAt: "2026-11-06T00:00:00.000Z",
+          createdBy: "SYSTEM_GOV_INGESTION",
+          citations: [
+            {
+              authority: "IRS",
+              title: "IRS Publication 15 (Circular E) & Form 940 Instructions (2027)",
+              statuteReference: "26 U.S. Code §§ 3301, 3302, 3306(b)(1)",
+              sourceUrl: "https://www.irs.gov/instructions/i940",
+              publicationDate: "2026-11-05",
+              citationTier: "TIER_1_OFFICIAL",
+              excerpt: "The FUTA tax rate is 6.0% on the first $7,000 of wages per employee, with a maximum 5.4% state credit yielding a 0.6% net FUTA rate."
+            }
+          ],
+          testCases: [
+            {
+              id: "tc-fed-futa-2027-01",
+              description: "Standard wage below $7,000 FUTA wage cap",
+              inputPayload: { grossWages: 2000, priorCumulativeWages: 0 },
+              expectedOutput: { taxAmount: 12.0, taxableWages: 2000, effectiveRate: 0.006 }
+            },
+            {
+              id: "tc-fed-futa-2027-02",
+              description: "Partial wage cap threshold reach crossing $7,000",
+              inputPayload: { grossWages: 3000, priorCumulativeWages: 5500 },
+              expectedOutput: { taxAmount: 9.0, taxableWages: 1500, effectiveRate: 0.006 }
+            }
+          ]
+        }
+      ]
     }
   ]
 };
